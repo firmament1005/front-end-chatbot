@@ -1,7 +1,26 @@
 [
     {
-        "path": "/",
+        "path": "/login",
         "component": "Login",
+        "exact": true,
+        "auth": false
+    },
+    {
+        "path": "/register",
+        "component": "Register",
+        "exact": true,
+        "auth": false
+    },
+    {
+        "path": "/dashboard",
+        "component": "Dashboard",
+        "exact": true,
+        "auth": false
+    }
+    ,
+    {
+        "path": "/",
+        "component": "Chat",
         "exact": true,
         "auth": false
     }
