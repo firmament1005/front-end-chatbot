@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Regbg from "../../assets/images/signupnewbg.png";
 import AIimage from "../../assets/images/ailogin.png";
 
 const Login: React.FC = () => {
+    const [userName, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = () => {
+        console.log(userName, password);
+    }
+
     return (
         <>
             <div className="relative flex justify-center items-center lg:min-h-screen w-full h-full px-4">
@@ -21,6 +28,8 @@ const Login: React.FC = () => {
                                 type="text"
                                 placeholder="senior.engineer@gmail.com"
                                 className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
                             />
                         </div>
                         <div className="w-full relative">
@@ -31,6 +40,8 @@ const Login: React.FC = () => {
                                 type={"password"}
                                 placeholder="**********"
                                 className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <svg
                                 className="absolute right-0 top-20 cursor-pointer"
@@ -78,8 +89,9 @@ const Login: React.FC = () => {
                             </p>
                         </div>
                         <button
-                            type="submit"
+                            type="button"
                             className="w-full mx-auto h-[63px] flex justify-center border border-[#227685] bb gap-4 items-center text-white lg:text-[32px] text-2xl font-bold bg-transparent hover:bg-[#227685] ease-in-out transform duration-300 rounded-full"
+                            onClick={() => handleLogin()}
                         >
                             サインイン
                         </button>

@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Regbg from "../../assets/images/signupnewbg.png";
 import AIimage from "../../assets/images/ailogin.png";
 
 const Register: React.FC = () => {
+    const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    const handleSignUp = () => {
+        console.log(userName, userEmail, password);
+    }
+
     return (
         <>
             <div className="relative flex justify-center items-center lg:min-h-screen w-full h-full px-4">
@@ -19,8 +28,10 @@ const Register: React.FC = () => {
                             </p>
                             <input
                                 type="text"
-                                placeholder="IntraIntel.ai"
+                                placeholder="senior.engineer@gmail.com"
                                 className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
                             />
                         </div>
                         <div className="w-full">
@@ -31,6 +42,8 @@ const Register: React.FC = () => {
                                 type="email"
                                 placeholder="intraintel@gmail.com"
                                 className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
+                                value={userEmail}
+                                onChange={(e) => setUserEmail(e.target.value)}
                             />
                         </div>
                         <div className="w-full relative">
@@ -41,6 +54,8 @@ const Register: React.FC = () => {
                                 type={"password"}
                                 placeholder="**********"
                                 className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <svg
                                 className="absolute right-0 top-20 cursor-pointer"
@@ -81,6 +96,8 @@ const Register: React.FC = () => {
                                 type={"password"}
                                 placeholder="**********"
                                 className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
                             />
                             <svg
                                 className="absolute right-0 top-20 cursor-pointer"
@@ -125,8 +142,9 @@ const Register: React.FC = () => {
                             </p>
                         </div>
                         <button
-                            type="submit"
+                            type="button"
                             className="w-full mx-auto h-[63px] flex justify-center border border-[#227685] bb gap-4 items-center text-white lg:text-[32px] text-2xl font-bold bg-transparent hover:bg-[#227685] ease-in-out transform duration-300 rounded-full"
+                            onClick={() => handleSignUp()}
                         >
                             サインアップ
                         </button>
