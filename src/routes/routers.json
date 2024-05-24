@@ -1,0 +1,8 @@
+[
+    {
+        "path": "/",
+        "component": "Login",
+        "exact": true,
+        "auth": false
+    }
+]
