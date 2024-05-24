@@ -4,5 +4,11 @@
         "component": "Login",
         "exact": true,
         "auth": false
+    },
+    {
+        "path": "/register",
+        "component": "Register",
+        "exact": true,
+        "auth": false
     }
 ]
