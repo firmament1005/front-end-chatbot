@@ -7,6 +7,8 @@ const Register: React.FC = () => {
     const [userEmail, setUserEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [isPasswordVisiable, setIsPasswordVisiable] = useState(false);
+    const [isConfirmVisiable, setIsConfirmVisiable] = useState(false);
 
     const handleSignUp = () => {
         console.log(userName, userEmail, password);
@@ -51,7 +53,7 @@ const Register: React.FC = () => {
                                 パスワード
                             </p>
                             <input
-                                type={"password"}
+                                type={isPasswordVisiable ? "text" : "password"}
                                 placeholder="**********"
                                 className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
                                 value={password}
@@ -64,6 +66,7 @@ const Register: React.FC = () => {
                                 viewBox="0 0 20 20"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
+                                onClick={() => setIsPasswordVisiable(!isPasswordVisiable)}
                             >
                                 <path
                                     d="M2.74602 13.0908C3.07151 13.4162 3.59911 13.4161 3.92449 13.0906C4.24987 12.7651 4.24979 12.2375 3.9243 11.9121L2.01214 10.0006L4.9027 7.11006C6.64748 5.36528 9.12439 4.65437 11.4947 5.1538C11.9451 5.24868 12.387 4.96053 12.4819 4.51019C12.5768 4.05986 12.2886 3.61788 11.8383 3.523C8.9224 2.90865 5.87153 3.78424 3.72419 5.93159L0.244308 9.41146C-0.0811495 9.73692 -0.0811104 10.2646 0.244425 10.59L2.74602 13.0908Z"
@@ -93,7 +96,7 @@ const Register: React.FC = () => {
                                 パスワードを認証する
                             </p>
                             <input
-                                type={"password"}
+                                type={isConfirmVisiable ? "text" : "password"}
                                 placeholder="**********"
                                 className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
                                 value={confirmPassword}
@@ -106,6 +109,7 @@ const Register: React.FC = () => {
                                 viewBox="0 0 20 20"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
+                                onClick={() => setIsConfirmVisiable(!isConfirmVisiable)}
                             >
                                 <path
                                     d="M2.74602 13.0908C3.07151 13.4162 3.59911 13.4161 3.92449 13.0906C4.24987 12.7651 4.24979 12.2375 3.9243 11.9121L2.01214 10.0006L4.9027 7.11006C6.64748 5.36528 9.12439 4.65437 11.4947 5.1538C11.9451 5.24868 12.387 4.96053 12.4819 4.51019C12.5768 4.05986 12.2886 3.61788 11.8383 3.523C8.9224 2.90865 5.87153 3.78424 3.72419 5.93159L0.244308 9.41146C-0.0811495 9.73692 -0.0811104 10.2646 0.244425 10.59L2.74602 13.0908Z"
@@ -156,7 +160,7 @@ const Register: React.FC = () => {
                         <img src={AIimage} alt="Image" className="my-5" />
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
