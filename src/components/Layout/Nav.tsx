@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const DashboardNav: React.FC = () => {
+const Nav: React.FC = () => {
     return (
         <h1>Dashboard Nav Bar</h1>
     )
 }
 
-export default DashboardNav;
+export default Nav;
