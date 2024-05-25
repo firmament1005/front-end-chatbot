@@ -1,10 +1,13 @@
 import React from 'react';
+import Nivigation from '../../components/Layout/Navigation';
 
-const Chat:React.FC = () => {
-    return(
-        <h1>Chat Page</h1>
+
+const Chat: React.FC = () => {
+    return (
+        <div className="layout">
+            <Nivigation/>
+        </div>
     )
 }
-
 
 export default Chat;
