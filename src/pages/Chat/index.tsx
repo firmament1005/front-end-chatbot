@@ -3,7 +3,7 @@ import Navigate from '../../components/Layout/Navigation/Navigation';
 
 const Chat: React.FC = () => {
     return (
-        <div className="layout">
+        <div className="flex">
             <Navigate />
         </div>
     )

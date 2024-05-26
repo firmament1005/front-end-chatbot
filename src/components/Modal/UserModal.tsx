@@ -21,8 +21,8 @@ const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     return (
         <>
             {animate && (
-                <div className="py-12 bg-white-700 transition duration-300 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0 bg-opacity-20 bg-black">
-                    <div role="alert" className={`container mx-auto w-11/12 md:w-2/3 max-w-lg ${isOpen ? 'animate-slide-in' : 'animate-slide-out'}`}>
+                <div className="py-12 bg-white-700 transition duration-300 ease-in-out z-50 absolute top-0 right-0 bottom-0 left-0 bg-opacity-20 bg-black h-full">
+                    <div role="alert" className={`container mx-auto w-11/12 md:w-2/3 max-w-lg z-50 ${isOpen ? 'animate-slide-in' : 'animate-slide-out'}`}>
                         <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                             <div className="flex items-center justify-center bg-grey-lighter">
                                 <label className="w-auto flex flex-col items-center px-5 py-5 bg-white text-blue rounded-full shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
@@ -64,21 +64,6 @@ const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                     </svg>
                                 </div>
                                 <input id="expiry" className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="MM/YY" />
-                            </div>
-                            <label htmlFor="cvc" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">CVC</label>
-                            <div className="relative mb-5 mt-2">
-                                <div className="absolute right-0 text-gray-600 flex items-center pr-3 h-full cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-info-circle"
-                                        width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
-                                        fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z"></path>
-                                        <circle cx="12" cy="12" r="9"></circle>
-                                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                                        <polyline points="11 12 12 12 12 16 13 16"></polyline>
-                                    </svg>
-                                </div>
-                                <input id="cvc" className="mb-8 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                    placeholder="MM/YY" />
                             </div>
                             <div className="flex items-center justify-start w-full">
                                 <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">確 認</button>
