@@ -1,14 +1,10 @@
 import React from 'react';
-import Nivigation from '../../components/Layout/Navigation/Navigate';
-import Nav from '../../components/Layout/Nav/Nav';
-import Message from './Message/Message';
+import Navigate from '../../components/Layout/Navigation/Navigation';
 
 const Chat: React.FC = () => {
     return (
         <div className="layout">
-            <Nivigation />
-            <Nav />
-            <Message />
+            <Navigate />
         </div>
     )
 }
