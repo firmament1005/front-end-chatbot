@@ -4197,7 +4197,7 @@ fieldset:disabled .btn {
 }
 
 .collapse:not(.show) {
-    display: none
+    display: none;
 }
 
 .collapsing {
@@ -28810,7 +28810,6 @@ fieldset:disabled .btn {
 .message.self .message-content {
     background-color: none;
     border-radius: .875rem .375rem .375rem .875rem;
-    box-shadow: inset 0 .125rem 0 0 #1496ff;
     color: #fff
 }
 
