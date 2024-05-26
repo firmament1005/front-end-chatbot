@@ -13,7 +13,6 @@ const Login: React.FC = () => {
     }
 
     const handlePasswordIsVisiable = () => {
-        console.log(passwordIsVisiable);
         setPasswordIsVisiable(!passwordIsVisiable);
     }
 
