@@ -12,12 +12,8 @@ const Navigate: React.FC = () => {
     return (
         <div className="flex">
             <aside className="flex flex-col items-center w-auto py-8 space-y-8 transition transform ease-in-out duration-1000 z-50 h-screen bg-white shadow">
-                <div className="transition transform ease-in-out duration-500 flex border-4 border-white dark:border-[#0099FF] bg-gray dark:hover:bg-[#0099FF] hover:text-white hover:border-white absolute top-2 p-3 rounded-full text-[#0099FF] hover:rotate-45">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2}
-                        stroke="currentColor" className="w-4 h-4">
-                        <path strokeLinecap="round" strokeLinejoin="round"
-                            d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-                    </svg>
+                <div className="flex dark:border-[#0099FF] hover:text-white hover:border-white absolute top-2">
+                    <img src="/img/logo.png" className="w-full y-full transition transform rounded-lg ease-in-out duration-500" alt="" />
                 </div>
                 <div className="mini mt-20 flex flex-col space-y-3 w-full h-full relative">
                     <div className="justify-end pr-3 text-gray-600 dark:hover:text-blue-500 w-full bg-white p-3 rounded-full flex cursor-pointer" onClick={() => setIsSideBarOpen("ChatSideBar")}>

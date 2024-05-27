@@ -65,10 +65,26 @@ const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                 </div>
                                 <input id="expiry" className="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="MM/YY" />
                             </div>
-                            <div className="flex items-center justify-start w-full">
-                                <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">確 認</button>
-                                <button className="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" onClick={onClose}>閉じる</button>
+                            <div className="flex items-center justify-end w-full">
+                                <button className="focus:outline-none focus:ring-gray-400 ml-3 transition duration-150 text-gray-600 ease-in-out border rounded px-8 py-2 text-sm group relative overflow-hidden bg-[#0099FF] cursor-pointer inline-flex items-center rounded text-white justify-center">
+                                    <span className="z-40">確 認</span>
+                                    <div className="absolute inset-0 h-[100%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
+                                </button>
+                                <button className="focus:outline-none focus:ring-gray-400 ml-3 transition duration-150 text-gray-600 ease-in-out border rounded px-8 py-2 text-sm group relative overflow-hidden bg-gray-700 cursor-pointer inline-flex items-center rounded text-white justify-center" onClick={onClose}>
+                                    <span className="z-40">閉じる</span>
+                                    <div className="absolute inset-0 h-[100%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
+                                </button>
                             </div>
+                            <button className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
+                                aria-label="close modal" role="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="20"
+                                    height="20" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" fill="none"
+                                    strokeLinecap="round" strokeLinejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" />
+                                    <line x1="18" y1="6" x2="6" y2="18" />
+                                    <line x1="6" y1="6" x2="18" y2="18" />
+                                </svg>
+                            </button>
                             <button className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
                                 aria-label="close modal" role="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="20"
