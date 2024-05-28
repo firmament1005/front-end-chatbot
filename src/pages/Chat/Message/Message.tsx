@@ -9,7 +9,7 @@ const Message: React.FC = () => {
     return (
         <div className="w-full flex item-center flex-col">
             <div className={`flex-1 ${sidebarOpen ? 'ml-64 fxied' : ''}`}>
-                <Header onSidebarOpen={() => setSidebarOpen(true)} />
+                <Header />
             </div>
             <MessageBody />
             <Footer />
@@ -18,3 +18,5 @@ const Message: React.FC = () => {
 }
 
 export default Message;
+
+// onSidebarOpen={() => setSidebarOpen(true)}
