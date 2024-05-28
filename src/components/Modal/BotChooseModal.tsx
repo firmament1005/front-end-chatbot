@@ -29,7 +29,7 @@ const BotChooseModal: React.FC<BotChooseModalProps> = ({ isBotModalOpen, onClose
                                     <h1 className="flex w-full justify-between text-[#0099FF] cursor-pointer items-center mb-6 text-3xl font-semibold">新規チャット</h1>
                                 </label>
                             </div>
-                            <input id="name" value="新規チャット" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                            <input id="name" defaultValue="新規チャット" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                 placeholder="James" />
                             <div className="col-span-2 sm:col-span-1">
                                 <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>

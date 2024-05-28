@@ -1,0 +1,22 @@
+.SideBarOpenClass {
+    display: none;
+}
+
+.SideBarHiddenClass {
+    display: flex;
+}
+
+.SideBarHiddenClass {
+    display: flex;
+}
+
+@media screen and (max-width : 640px) {
+    .SideBarOpenClass {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .SideBarHiddenClass {
+        display: none;
+    }
+}
