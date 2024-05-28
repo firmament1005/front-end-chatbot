@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
+import UserModal from '../Modal/UserModal';
 
 const Header: React.FC = () => {
+
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleToggleDropdown = () => {
+        setDropdownOpen(!dropdownOpen);
+    };
+
+    const handleCloseDropdown = () => {
+        setDropdownOpen(false);
+    };
+
     return (
         <div className="2xl:container 2xl:mx-auto">
             <div className="bg-white rounded shadow-lg py-3 px-7 relative">
                 <nav className="flex justify-between">
-                    <div className="flex items-center space-x-3 lg:pr-16 pr-6 ml-1 static">
-                        <img src="/img/avatar.png" className='w-14 h-14 shadow rounded-full' alt="" />
-                        <div className='absolute' style={{ "marginTop": "50px", "marginLeft": "40px" }}>
-                            <span className="relative flex h-3 w-3">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-                            </span>
-                        </div>
-                        <h2 className="font-normal text-sm leading-6 text-black-800">Minion</h2>
-                    </div>
                     <div className=" flex space-x-5 justify-center items-center pl-2">
                         <div className="relative border flex items-center w-full h-10 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
                             <div className="grid place-items-center h-full w-12 text-gray-300">
@@ -28,8 +31,36 @@ const Header: React.FC = () => {
                                 placeholder="検索.." />
                         </div>
                     </div>
+
+                    <div className="relative">
+                        <div onClick={handleToggleDropdown} className="flex items-center space-x-3 pr-2 ml-1 static">
+                            <img src="/img/avatar.png" className='w-14 h-14 shadow rounded-full' alt="" />
+                            <div className='absolute' style={{ "marginTop": "40px", "marginLeft": "45px" }}>
+                                <span className="relative flex h-3 w-3">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                                </span>
+                            </div>
+                        </div>
+                        {dropdownOpen && (
+                            <>
+                                <div onClick={handleCloseDropdown} className="fixed inset-0 z-10 w-full h-full"></div>
+                                <div className="absolute right-0 z-10 w-36 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
+                                    <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white" onClick={() => setIsModalOpen(true)}>
+                                        Profile
+                                    </a>
+                                    <a className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white" >
+                                        Logout
+                                    </a>
+                                </div>
+                            </>
+                        )}
+                    </div>
                 </nav>
             </div>
+            <UserModal isOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}>
+                <div></div>
+            </UserModal>
         </div>
     );
 };

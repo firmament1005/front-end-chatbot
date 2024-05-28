@@ -12,14 +12,14 @@
         "auth": false
     },
     {
-        "path": "/dashboard",
+        "path": "/",
         "component": "Dashboard",
         "exact": true,
         "auth": false
     }
     ,
     {
-        "path": "/",
+        "path": "/Chat",
         "component": "Chat",
         "exact": true,
         "auth": false
