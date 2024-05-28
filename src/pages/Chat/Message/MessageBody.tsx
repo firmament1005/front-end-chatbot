@@ -5,7 +5,7 @@ const MessageBody: React.FC = () => {
         <div className="w-full h-full overflow-y-auto p-8">
             <div className=" w-auto flex justify-start gap-2.5 mt-2">
                 <div className="flex w-auto">
-                    <img className="w-10 h-10 rounded-full" src="/img/avatar.png" alt="Jese image" />
+                    <img className="w-10 h-10 rounded-full" src="/img/avatar.png" alt="Image"></img>
                     <div className="flex flex-col gap-1 w-full max-w-[640px]">
                         <div className="flex items-center space-x-2 rtl:space-x-reverse">
                             <span className="text-sm font-semibold text-gray-900 dark:text-black">Minion</span>
