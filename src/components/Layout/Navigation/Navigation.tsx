@@ -37,7 +37,7 @@ const Navigate: React.FC = () => {
                     </div>
                     <div className="justify-end text-gray w-full p-1 rounded-full flex absolute" style={{ "bottom": "0"}} onClick={openModal}>
                         <button className="rounded-full bg-gray-100">
-                            <img className="h-full w-full rounded-full" src="/img/dev.jpg" alt="" />
+                            <img className="h-full w-full rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="" />
                         </button>
                     </div>
                 </div>
