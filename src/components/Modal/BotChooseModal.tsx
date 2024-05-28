@@ -21,7 +21,7 @@ const BotChooseModal: React.FC<BotChooseModalProps> = ({ isBotModalOpen, onClose
     return (
         <>
             {animate && (
-                <div className="py-12 bg-white-700 transition duration-300 ease-in-out z-50 absolute top-0 right-0 bottom-0 left-0 bg-opacity-20 bg-black fixed w-screen y-screen" style={{"border" : "1px solid red"}}>
+                <div className="py-12 bg-white-700 transition duration-300 ease-in-out z-50 top-0 right-0 bottom-0 left-0 bg-opacity-20 bg-black fixed x-full y-full">
                     <div role="alert" className={`container mx-auto w-11/12 md:w-2/3 max-w-lg z-50 ${isBotModalOpen ? 'animate-slide-in' : 'animate-slide-out'}`}>
                         <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                             <div className="flex items-center justify-center bg-grey-lighter">
