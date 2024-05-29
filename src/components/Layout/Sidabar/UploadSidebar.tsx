@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 
-const UploadSideBar: React.FC<{ sidebarOpen: boolean }> = ({ sidebarOpen }) => {
+interface UploadSideBarProps {
+    isUploadSideBarOpen: boolean;
+    setIsUploadSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const UploadSideBar: React.FC<UploadSideBarProps> = ({ isUploadSideBarOpen, setIsUploadSidebarOpen }) => {
     const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+    const [isuploadSideBarOpen, setIsUploadSideBarOpen] = useState("UploadSidebar");
+
 
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
     };
 
     const handleSideBarOpen = () => {
-        sidebarOpen = false;
+        setIsUploadSidebarOpen(false);
+        setIsUploadSideBarOpen("");
     }
 
     return (
-        <div className={`fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-100 lg:translate-x-0 lg:static lg:inset-0 ${sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'}`}>
+        <div className={`fixed inset-y-0 left-0 z-50 w-64 overflow-y-auto transition duration-300 transform bg-gray-100 lg:translate-x-0 lg:static lg:inset-0 ${(isUploadSideBarOpen && isuploadSideBarOpen) ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'}`}>
             <div className="flex items-center justify-center mt-8 relative">
                 <button className="text-gray-900 focus:outline-none lg:hidden absolute bottom-10 right-0" onClick={() => handleSideBarOpen()}>
-                    <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <svg className="w-6 h-6 text-gray-800 dark:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18 17.94 6M18 18 6.06 6" />
                     </svg>
                 </button>

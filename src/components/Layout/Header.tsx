@@ -15,7 +15,7 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
         <header className="flex items-center justify-between px-6 py-4 bg-white border-b-2 shadow-xl">
             <div className="flex items-center">
                 <button
-                    onClick={() => setSidebarOpen(true)}
+                    onClick={() => setSidebarOpen(!sidebarOpen)}
                     className="text-gray-500 focus:outline-none lg:hidden"
                 >
                     <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
