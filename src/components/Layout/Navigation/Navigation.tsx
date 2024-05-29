@@ -63,7 +63,7 @@ const Navigate: React.FC = () => {
                     </div>
                 </div>
             </aside>
-            <SideBar sidebartype={isSideBarType} isChatSideOpen={isChatSideBarOpen}   />
+            <SideBar sidebartype={isSideBarType} isChatSideOpen={isChatSideBarOpen}/>
             <UserModal isOpen={isModalOpen} onClose={closeModal}>
                 <h2 className="text-2xl mb-4"></h2>
             </UserModal>
