@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
-import UserModal from '../Modal/UserModal';
 
-const Header: React.FC<{ onSidebarOpen: () => void }> = ({ onSidebarOpen }) => {
+const Header: React.FC = () => {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
-        <header className="flex items-center justify-end px-6 py-4 bg-white shadow">
+        <header className="flex items-center justify-between px-6 py-4 bg-white shadow-xl">
             <div className="flex items-center">
-                <button onClick={onSidebarOpen} className="text-gray-500 focus:outline-none lg:hidden">
+                <button
+                    onClick={() => setSidebarOpen(true)}
+                    className="text-gray-500 focus:outline-none lg:hidden"
+                >
                     <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                        <path
+                            d="M4 6H20M4 12H20M4 18H11"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
                     </svg>
                 </button>
-                <div className=" flex space-x-5 justify-center items-center pl-2">
+
+                <div className="relative mx-4 lg:mx-0">
                     <div className="relative border flex items-center w-full h-10 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
                         <div className="grid place-items-center h-full w-12 text-gray-300">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -27,35 +36,41 @@ const Header: React.FC<{ onSidebarOpen: () => void }> = ({ onSidebarOpen }) => {
                     </div>
                 </div>
             </div>
-            <div className="flex items-center justify-end ml-12">
+
+            <div className="flex items-center">
                 <div className="relative">
-                    <button onClick={() => setDropdownOpen(!dropdownOpen)} className="relative block w-12 h-12 overflow-hidden rounded-full shadow focus:outline-none">
-                        <img className="object-cover w-full h-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Your avatar" />
+                    <button
+                        onClick={() => setDropdownOpen(!dropdownOpen)}
+                        className="relative block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none"
+                    >
+                        <img
+                            className="object-cover w-full h-full"
+                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                            alt="Your avatar"
+                        />
                     </button>
-                    <div className='absolute bottom-0 left-10'>
-                        <span className="relative flex h-3 w-3">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-                        </span>
-                    </div>
 
                     {dropdownOpen && (
                         <>
-                            <div onClick={() => setDropdownOpen(false)} className="inset-0 z-10 w-full h-full"></div>
-                            <div className="absolute right-0 z-10 w-36 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white" onClick={() => setIsModalOpen(true)}>プロフィール</a>
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white">ログアウト</a>
+                            <div
+                                onClick={() => setDropdownOpen(false)}
+                                className="fixed inset-0 z-10 w-full h-full"
+                            ></div>
+
+                            <div className="absolute right-0 z-10 w-32 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
+                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white">
+                                    Profile
+                                </a>
+                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white">
+                                    Logout
+                                </a>
                             </div>
                         </>
                     )}
                 </div>
             </div>
-            <UserModal isOpen={isModalOpen} onClose={() => setIsModalOpen(!isModalOpen)}>
-                <div></div>
-            </UserModal>
         </header>
     );
 };
 
 export default Header;
-

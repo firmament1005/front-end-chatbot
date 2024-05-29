@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const DashboardSideBar: React.FC = () => {
-
+const Sidebar: React.FC<{ sidebarOpen: boolean }> = ({ sidebarOpen }) => {
     const [animate, setAnimate] = useState(false);
     const [changeSvg, setChangeSvg] = useState(false);
 
@@ -31,13 +30,13 @@ const DashboardSideBar: React.FC = () => {
     }
 
     return (
-        <>
+        <div className={`fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0 ${sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'}`}>
             <div className="flex items-center justify-center mt-8">
                 <div className="flex items-center">
                     <span className="text-2xl font-semibold text-white">ダッシュボード</span>
                 </div>
             </div>
-            <nav className='text-white mt-10'>
+            <nav className="text-white mt-10">
                 <ul className="space-y-2 flex justify-center flex-col items-center">
                     <li className="opcion-con-desplegable w-[90%] cursor-pointer">
                         <div className="flex items-center justify-between p-2 hover:bg-gray-700" onClick={() => setChangeSvg(changeSvg ? false : true)}>
@@ -81,8 +80,8 @@ const DashboardSideBar: React.FC = () => {
                     </li>
                 </ul>
             </nav>
-        </>
+        </div>
     );
 };
 
-export default DashboardSideBar;
+export default Sidebar;
