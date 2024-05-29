@@ -2,7 +2,7 @@ import React from "react";
 
 const MessageBody: React.FC = () => {
     return (
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-white">
             <div className="flex flex-col">
                 <div className="w-full h-[84vh] overflow-y-auto p-8">
                     <div className="w-auto flex justify-start gap-2.5 mt-2">
