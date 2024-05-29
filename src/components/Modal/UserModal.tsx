@@ -45,8 +45,8 @@ const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                     <div role="alert" className={`container mx-auto w-11/12 md:w-2/3 max-w-lg z-50 ${isOpen ? 'animate-slide-in' : 'animate-slide-out'}`}>
                         <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                             <div className="flex items-center justify-center bg-grey-lighter">
-                                <label className="w-auto flex flex-col items-center px-5 py-5 bg-white text-blue rounded-full shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
-                                    <img src="/img/avatar.png" className="w-20 h-20" alt="" />
+                                <label className="w-auto flex items-center rounded-full shadow-lg border cursor-pointer">
+                                    <img src="/img/dev.jpg" className="w-24 h-24 rounded-full" alt="" />
                                     <input type='file' className="hidden" />
                                 </label>
                             </div>

@@ -1,11 +1,13 @@
-import React from 'react';
-
+import React from "react";
+import Header from "../../components/Layout/Header";
+import DashboardBody from "./DashboardBody";
 
 const Dashboard: React.FC = () => {
     return (
-        <h1>Dashboard Page</h1>
+        <div className="h-screen overflow-hidden">
+            <DashboardBody/>
+        </div>
     )
 }
-
 
 export default Dashboard;
