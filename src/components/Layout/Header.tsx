@@ -6,7 +6,7 @@ const Header: React.FC<{ onSidebarOpen: () => void }> = ({ onSidebarOpen }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
-        <header className="flex items-center justify-between px-6 py-4 bg-white shadow fxied">
+        <header className="flex items-center justify-end px-6 py-4 bg-white shadow">
             <div className="flex items-center">
                 <button onClick={onSidebarOpen} className="text-gray-500 focus:outline-none lg:hidden">
                     <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,16 +27,21 @@ const Header: React.FC<{ onSidebarOpen: () => void }> = ({ onSidebarOpen }) => {
                     </div>
                 </div>
             </div>
-
-            <div className="flex items-center">
+            <div className="flex items-center justify-end ml-12">
                 <div className="relative">
                     <button onClick={() => setDropdownOpen(!dropdownOpen)} className="relative block w-12 h-12 overflow-hidden rounded-full shadow focus:outline-none">
-                        <img className="object-cover w-full h-full" src="/img/dev.jpg" alt="Your avatar" />
+                        <img className="object-cover w-full h-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Your avatar" />
                     </button>
+                    <div className='absolute bottom-0 left-10'>
+                        <span className="relative flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                        </span>
+                    </div>
 
                     {dropdownOpen && (
                         <>
-                            <div onClick={() => setDropdownOpen(false)} className="fixed inset-0 z-10 w-full h-full"></div>
+                            <div onClick={() => setDropdownOpen(false)} className="inset-0 z-10 w-full h-full"></div>
                             <div className="absolute right-0 z-10 w-36 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white" onClick={() => setIsModalOpen(true)}>プロフィール</a>
                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white">ログアウト</a>

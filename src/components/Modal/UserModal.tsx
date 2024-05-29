@@ -46,7 +46,7 @@ const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                         <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                             <div className="flex items-center justify-center bg-grey-lighter">
                                 <label className="w-auto flex items-center rounded-full shadow-lg border cursor-pointer">
-                                    <img src="/img/dev.jpg" className="w-24 h-24 rounded-full" alt="" />
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" className="w-24 h-24 rounded-full" alt="" />
                                     <input type='file' className="hidden" />
                                 </label>
                             </div>
