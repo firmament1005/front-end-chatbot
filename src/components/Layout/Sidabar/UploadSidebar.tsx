@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
 const UploadSideBar: React.FC<{ sidebarOpen: boolean }> = ({ sidebarOpen }) => {
-    const [changeSvg, setChangeSvg] = useState(false);
-
     const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
 
     const toggleDropdown = () => {

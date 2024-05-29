@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
     const [openUserModal, setOpenUserModal] = useState(false);
 
     return (
-        <header className="flex items-center justify-between px-6 py-4 bg-white shadow-xl">
+        <header className="flex items-center justify-between px-6 py-4 bg-white border-b-2 shadow-xl">
             <div className="flex items-center">
                 <button
                     onClick={() => setSidebarOpen(true)}
