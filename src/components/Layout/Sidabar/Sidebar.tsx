@@ -1,21 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import ChatSideBar from "./ChatSideBar";
 import UploadSideBar from "./UploadSidebar";
 import SettingSideBar from "./SettingSideBar";
 
-interface SidebarProps {
-    isChatOpen: string;
-    onClose: () => void;
-    children?: React.ReactNode;
-};
+interface SidebarType {
+    sidebartype : string,
+}
 
-const SideBar: React.FC<SidebarProps> = ({ isChatOpen, onClose, children }) => {
+const SideBar: React.FC<SidebarType> = ({sidebartype}) => {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const renderSideBar = () => {
-        switch (isChatOpen) {
+        switch (sidebartype) {
             case "ChatSideBar":
-                return <ChatSideBar isOpen={true} />;
+                return <ChatSideBar sidebarOpen={sidebarOpen} />;
             case "UploadSideBar":
-                return <UploadSideBar />;
+                return <UploadSideBar sidebarOpen={sidebarOpen} />
             case "SettingSideBar":
                 return <SettingSideBar />;
             default:
@@ -25,8 +24,9 @@ const SideBar: React.FC<SidebarProps> = ({ isChatOpen, onClose, children }) => {
 
     return (
         <>
-            {renderSideBar()}
-            {children}
+            <div className="flex h-screen bg-gray-200">
+                {renderSideBar()}
+            </div>
         </>
     );
 };

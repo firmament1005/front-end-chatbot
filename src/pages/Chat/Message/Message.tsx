@@ -5,12 +5,9 @@ import Footer from "../../../components/Layout/Footer";
 
 const Message: React.FC = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
-
     return (
-        <div className="w-full flex item-center flex-col">
-            <div className={`flex-1 ${sidebarOpen ? 'ml-64 fxied' : ''}`}>
-                <Header />
-            </div>
+        <div className="flex flex-col flex-1 overflow-x-hidden">
+            <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
             <MessageBody />
             <Footer />
         </div>
@@ -18,5 +15,3 @@ const Message: React.FC = () => {
 }
 
 export default Message;
-
-// onSidebarOpen={() => setSidebarOpen(true)}
