@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import UserModal from '../Modal/UserModal';
+import DashboardSidebar from './Dashboard/DashboardSidebar';
 
 interface HeaderProps {
     sidebarOpen: boolean;
@@ -27,7 +28,6 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
                         />
                     </svg>
                 </button>
-
                 <div className="relative mx-4 lg:mx-0">
                     <div className="relative border flex items-center w-full h-10 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
                         <div className="grid place-items-center h-full w-12 text-gray-300">

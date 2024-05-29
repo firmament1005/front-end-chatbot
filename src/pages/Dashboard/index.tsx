@@ -8,7 +8,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <div className="flex h-screen bg-gray-200">
-            <DashboardSideBar sidebarOpen={sidebarOpen} />
+            <DashboardSideBar isSideBarOpen={sidebarOpen} />
             <div className="flex flex-col flex-1 overflow-hidden">
                 <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
                 <DashboardBody />
