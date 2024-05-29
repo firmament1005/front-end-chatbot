@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import UserModal from '../Modal/UserModal';
 
 const Header: React.FC = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [openUserModal, setOpenUserModal] = useState(false);
 
     return (
         <header className="flex items-center justify-between px-6 py-4 bg-white shadow-xl">
@@ -41,7 +43,7 @@ const Header: React.FC = () => {
                 <div className="relative">
                     <button
                         onClick={() => setDropdownOpen(!dropdownOpen)}
-                        className="relative block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none"
+                        className="relative block w-10 h-10 overflow-hidden rounded-full shadow focus:outline-none"
                     >
                         <img
                             className="object-cover w-full h-full"
@@ -49,6 +51,12 @@ const Header: React.FC = () => {
                             alt="Your avatar"
                         />
                     </button>
+                    <div className='flex absolute bottom-0 left-8'>
+                        <span className="relative flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                        </span>
+                    </div>
 
                     {dropdownOpen && (
                         <>
@@ -58,7 +66,7 @@ const Header: React.FC = () => {
                             ></div>
 
                             <div className="absolute right-0 z-10 w-32 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white">
+                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white" onClick={() => setOpenUserModal(true)}>
                                     Profile
                                 </a>
                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white">
@@ -69,6 +77,9 @@ const Header: React.FC = () => {
                     )}
                 </div>
             </div>
+            <UserModal isOpen={openUserModal} onClose={() => setOpenUserModal(false)}>
+                <div></div>
+            </UserModal>
         </header>
     );
 };
