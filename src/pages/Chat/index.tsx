@@ -4,7 +4,7 @@ import Message from './Message/Message';
 
 const Chat: React.FC = () => {
     return (
-        <div className="flex">
+        <div className="flex h-screen bg-gray-200">
             <Navigate />
             <Message />
         </div>

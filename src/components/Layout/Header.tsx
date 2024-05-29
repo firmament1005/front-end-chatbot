@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import UserModal from '../Modal/UserModal';
 
-const Header: React.FC = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+interface HeaderProps {
+    sidebarOpen: boolean;
+    setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [openUserModal, setOpenUserModal] = useState(false);
 
