@@ -1,25 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BotChooseModal from '../../Modal/BotChooseModal';
 
-const Sidebar: React.FC<{ sidebarOpen: boolean }> = ({ sidebarOpen }) => {
-    const [changeSvg, setChangeSvg] = useState(false);
+interface SideBarProps {
+    isSideBarOpen: boolean;
+    setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ChatSideBar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarOpen }) => {
     const [isOpenBotModal, setIsOpenBotModal] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+    const [isChatSideBarOpen, setIsChatSideBarOpen] = useState("ChatSideBar");
+
+
+    const HiddenChatSideBar = () => {
+        setIsSidebarOpen(!isSideBarOpen);
+        setIsChatSideBarOpen("");
+    }
 
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
     };
 
-    const handleSideBarOpen = () => {
-        sidebarOpen = false;
-    }
-
     return (
         <>
-            <div className={`fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-100 lg:translate-x-0 lg:static lg:inset-0 ${sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'}`}>
+            <div className={`fixed inset-y-0 left-0 w-60 z-50 overflow-y-auto transition duration-300 transform bg-gray-100 lg:translate-x-0 lg:static lg:inset-0 ${(isSideBarOpen && isChatSideBarOpen) ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'}`}>
                 <div className="flex items-center justify-center mt-8 relative">
-                    <button className="text-gray-900 focus:outline-none lg:hidden absolute bottom-10 right-0" onClick={() => handleSideBarOpen()}>
-                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <button className="text-gray-900 focus:outline-none lg:hidden absolute bottom-10 right-0" onClick={() => HiddenChatSideBar()}>
+                        <svg className="w-6 h-6 text-gray-900 dark:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18 17.94 6M18 18 6.06 6" />
                         </svg>
                     </button>
@@ -39,14 +46,14 @@ const Sidebar: React.FC<{ sidebarOpen: boolean }> = ({ sidebarOpen }) => {
                         <div className="absolute inset-0 h-[200%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000">
                         </div>
                     </button>
-                    <div className="relative mx-4 lg:mx-0 mt-5">
+                    <div className="relative lg:mx-0 mt-5">
                         <div className="relative border flex items-center w-full h-10 rounded focus-within:shadow-lg bg-white overflow-hidden">
                             <div className="grid place-items-center h-full w-12 text-gray-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </div>
-                            <input className="peer h-auto w-full outline-none text-sm text-gray-700 pr-2"
+                            <input className="h-auto w-full outline-none text-sm text-gray-700"
                                 type="text"
                                 id="search"
                                 placeholder="検索.." />
@@ -84,4 +91,4 @@ const Sidebar: React.FC<{ sidebarOpen: boolean }> = ({ sidebarOpen }) => {
     );
 };
 
-export default Sidebar;
+export default ChatSideBar;
