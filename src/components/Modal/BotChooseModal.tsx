@@ -1,4 +1,5 @@
 import React, { ReactNode, useState, useEffect } from 'react';
+import { useChatBotListContext } from '../../Context/ChatListContext/ChatListContext';
 
 interface BotChooseModalProps {
     isBotModalOpen: boolean,
@@ -7,6 +8,33 @@ interface BotChooseModalProps {
 }
 
 const BotChooseModal: React.FC<BotChooseModalProps> = ({ isBotModalOpen, onClose }) => {
+
+    const { Bot, addChatBot } = useChatBotListContext();
+    const [botName, setBotName] = useState<string>("新規チャット");
+    const [botCategory, setBotCategory] = useState<string>("建設費資材見積");
+
+    //onChange Event set ChatBot Name
+    const handleChatBotName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setBotName(event.target.value);
+    };
+
+    //onChange Event set ChatBot Category
+    const handleBotCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setBotCategory(event.target.value);
+    }
+
+    //add new ChatBot
+    const addNewChatBot = () => {
+        const chatBotList = {
+            id: Bot.length,
+            ChatBotName: botName,
+            ChatBotCategory: botCategory,
+            ChatHistoryID: 1
+        }
+        addChatBot(chatBotList);
+        onClose();
+    }
+
     const [animate, setAnimate] = useState(false);
 
     useEffect(() => {
@@ -29,18 +57,18 @@ const BotChooseModal: React.FC<BotChooseModalProps> = ({ isBotModalOpen, onClose
                                     <h1 className="flex w-full justify-between text-[#0099FF] cursor-pointer items-center mb-6 text-3xl font-semibold">新規チャット</h1>
                                 </label>
                             </div>
-                            <input id="name" defaultValue="新規チャット" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                            <input id="name" onChange={handleChatBotName} defaultValue="新規チャット" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                 placeholder="James" />
                             <div className="col-span-2 sm:col-span-1">
                                 <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                                <select id="category" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
-                                    <option value="TV">建設費資材見積</option>
-                                    <option value="PC">人件費見積もり</option>
-                                    <option value="GA">その他の費用</option>
+                                <select value={botCategory} onChange={handleBotCategory} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
+                                    <option value="建設費資材見積">建設費資材見積</option>
+                                    <option value="人件費見積もり">人件費見積もり</option>
+                                    <option value="その他の費用">その他の費用</option>
                                 </select>
                             </div>
                             <div className="flex items-center justify-end w-full">
-                                <button className="focus:outline-none focus:ring-gray-400 ml-3 transition duration-150 text-gray-600 ease-in-out border rounded px-8 py-2 text-sm group relative overflow-hidden bg-[#0099FF] cursor-pointer inline-flex items-center rounded text-white justify-center">
+                                <button onClick={() => addNewChatBot()} className="focus:outline-none focus:ring-gray-400 ml-3 transition duration-150 text-gray-600 ease-in-out border rounded px-8 py-2 text-sm group relative overflow-hidden bg-[#0099FF] cursor-pointer inline-flex items-center rounded text-white justify-center">
                                     <span className="z-40">確 認</span>
                                     <div className="absolute inset-0 h-[100%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000">
                                     </div>
@@ -50,7 +78,7 @@ const BotChooseModal: React.FC<BotChooseModalProps> = ({ isBotModalOpen, onClose
                                     <div className="absolute inset-0 h-[100%] w-[200%] rotate-45 translate-x-[-70%] transition-all group-hover:scale-100 bg-white/30 group-hover:translate-x-[50%] z-20 duration-1000"></div>
                                 </button>
                             </div>
-                            <button className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
+                            <button onClick={onClose} className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
                                 aria-label="close modal" role="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="20"
                                     height="20" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" fill="none"
