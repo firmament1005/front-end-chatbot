@@ -1,22 +1,19 @@
-.SideBarOpenClass {
-    display: none;
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
 }
 
-.SideBarHiddenClass {
-    display: flex;
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
 
-.SideBarHiddenClass {
-    display: flex;
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
 }
 
-@media screen and (max-width : 640px) {
-    .SideBarOpenClass {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .SideBarHiddenClass {
-        display: none;
-    }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
