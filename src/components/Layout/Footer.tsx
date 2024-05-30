@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useRef } from "react";
 
 interface FooterProps {
@@ -50,11 +51,15 @@ const Footer: React.FC<FooterProps> = ({ sendQuestions }) => {
             setQuestionFiles(Array.from(files));
         }
     }
+=======
+import React from "react";
+>>>>>>> 3a151f4a12e36474493c4e342e9b5341a4f8c100
 
     return (
-        <div className="x-full">
+        <div className="x-full border-t-2">
             <form>
                 <label htmlFor="chat" className="sr-only">Your message</label>
+<<<<<<< HEAD
                 <div className="flex overflow-y-auto items-center py-2 px-3 bg-gray-50 rounded-lg">
                     <input
                         ref={fileInputRef}
@@ -79,6 +84,11 @@ const Footer: React.FC<FooterProps> = ({ sendQuestions }) => {
                         className="block mx-4 p-2.5 w-full max-h-100 min-h-11 text-sm text-black bg-white rounded border border-indigo-700 focus:border focus:border-indigo-700 dark:bg-gray-100 dark:border-indigo-700 dark:placeholder-black dark:text-black dark:focus:border-indigo-700 outline-none"
                         placeholder="Your message..." />
                     <button type="button" onClick={handleSendQuestions} className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer">
+=======
+                <div className="flex items-center py-2 px-3 bg-gray-50 rounded-lg dark:bg-white">
+                    <textarea rows={1} className="block mx-4 p-2.5 w-full max-h-11 min-h-11 text-sm text-black bg-white rounded border border-indigo-700 focus:border focus:border-indigo-700 dark:bg-gray-100 dark:border-indigo-700 dark:placeholder-black dark:text-black dark:focus:border-indigo-700 outline-none" placeholder="Your message..."></textarea>
+                    <button type="submit" className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer">
+>>>>>>> 3a151f4a12e36474493c4e342e9b5341a4f8c100
                         <svg className="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
                     </button>
                 </div>

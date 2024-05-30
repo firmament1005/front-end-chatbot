@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-const Sidebar: React.FC<{ sidebarOpen: boolean }> = ({ sidebarOpen }) => {
+interface SideBarProps {
+    isSideBarOpen: boolean;
+    setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const DashboardSidebar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarOpen }) => {
     const [animate, setAnimate] = useState(false);
     const [changeSvg, setChangeSvg] = useState(false);
+    const [isSidebarClose, setIsSidebarClose] = useState(true);
 
     useEffect(() => {
         if (changeSvg) {
@@ -11,7 +17,7 @@ const Sidebar: React.FC<{ sidebarOpen: boolean }> = ({ sidebarOpen }) => {
             const timer = setTimeout(() => setAnimate(false), 100);
             return () => clearTimeout(timer);
         }
-    }, [changeSvg]);
+    }, [changeSvg, isSidebarClose]);
 
     const renderSVGIcon = () => {
         if (changeSvg) {
@@ -30,8 +36,13 @@ const Sidebar: React.FC<{ sidebarOpen: boolean }> = ({ sidebarOpen }) => {
     }
 
     return (
-        <div className={`fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0 ${sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'}`}>
-            <div className="flex items-center justify-center mt-8">
+        <div className={`fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0 ${(isSideBarOpen && isSidebarClose) ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'}`}>
+            <div className="flex items-center justify-center mt-8 relative">
+                <button className="text-gray-500 focus:outline-none lg:hidden absolute bottom-10 right-0" onClick={() => setIsSidebarOpen(false)}>
+                    <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                    </svg>
+                </button>
                 <div className="flex items-center">
                     <span className="text-2xl font-semibold text-white">ダッシュボード</span>
                 </div>
@@ -84,4 +95,4 @@ const Sidebar: React.FC<{ sidebarOpen: boolean }> = ({ sidebarOpen }) => {
     );
 };
 
-export default Sidebar;
+export default DashboardSidebar;

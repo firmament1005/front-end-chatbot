@@ -6,6 +6,7 @@ import axios from "axios";
 
 const Message: React.FC = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+<<<<<<< HEAD
     const [newMessage, setNewMessage] = useState([]);
 
     const handleSendQuestion = async (text = '', files: File[]) => {
@@ -40,8 +41,19 @@ const Message: React.FC = () => {
             </div>
             <MessageBody messages={newMessage} />
             <Footer sendQuestions={handleSendQuestion} />
+=======
+    return (
+        <div className="flex flex-col flex-1 overflow-x-hidden">
+            <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+            <MessageBody />
+            <Footer />
+>>>>>>> 3a151f4a12e36474493c4e342e9b5341a4f8c100
         </div>
     )
 }
 
+<<<<<<< HEAD
 export default Message;
+=======
+export default Message;
+>>>>>>> 3a151f4a12e36474493c4e342e9b5341a4f8c100
