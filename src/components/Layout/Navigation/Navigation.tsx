@@ -20,10 +20,6 @@ const Navigate: React.FC = () => {
         setIsChatSideBarOpen(!isChatSideBarOpen);
     }
 
-    const handleSettingSideBarOpen = () => {
-        setIsSideBarType("SettingSideBar");
-        setIsChatSideBarOpen(!isChatSideBarOpen);
-    }
 
     const Go_To_Dashboard = () => {
         window.location.href = "/dashboard";
