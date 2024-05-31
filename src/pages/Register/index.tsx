@@ -41,7 +41,7 @@ const Register: React.FC = () => {
                                     <img ref={upload} src={imageSrc} className="w-full h-full rounded-full" alt="" />
                                 </div>
                                 <input type='file' onChange={(event) => loadFile(event)} className="hidden" />
-                            </label>
+                          </label>
                         </div>
                         <div className="w-full">
                             <p className="text-white bb text-2xl font-medium leading-[80px]">
