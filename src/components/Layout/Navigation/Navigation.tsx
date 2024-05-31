@@ -20,7 +20,6 @@ const Navigate: React.FC = () => {
         setIsChatSideBarOpen(!isChatSideBarOpen);
     }
 
-
     const Go_To_Dashboard = () => {
         window.location.href = "/dashboard";
     }
@@ -28,7 +27,7 @@ const Navigate: React.FC = () => {
     return (
         <div className="flex h-screen">
             <aside className="flex flex-col items-center w-auto py-8 space-y-8 transition transform ease-in-out duration-1000 h-screen bg-white shadow">
-                <div className="flex dark:border-[#0099FF] hover:text-white hover:border-white absolute top-2">
+                <div className="flex dark:border-[#0099FF] hover:text-white hover:border-white absolute top-2" onClick={() => Go_To_Dashboard()}>
                     <img src="/img/logo.png" className="w-full y-full transition transform rounded-lg ease-in-out duration-500" alt="" />
                 </div>
                 <div className="mini mt-20 flex flex-col space-y-3 w-full h-full relative">

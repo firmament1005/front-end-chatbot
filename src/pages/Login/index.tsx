@@ -1,29 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Regbg from "../../assets/images/signupnewbg.png";
 import AIimage from "../../assets/images/ailogin.png";
+import Alert from '../../components/Alert/Alert';
 
 const Login: React.FC = () => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordIsVisiable, setPasswordIsVisiable] = useState(true);
+    const [alert, setAlert] = useState<{ type: 'success' | 'error' | 'warning' | 'info'; message: string } | null>(null);
+    const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
-    const [passwordIsVisiable, setPasswordIsVisiable] = useState(false);
+    const showAlert = (type: 'success' | 'error' | 'warning' | 'info', message: string) => {
+        setAlert({ type, message });
+    };
+
+    const handleClose = () => {
+        setAlert(null);
+    };
 
     const handleLogin = () => {
-        window.location.href = "dashboard";
+        showAlert('success', "Login Success");
+        const id = setTimeout(() => {
+            setAlert(null);
+        }, 3000);
+        setTimeoutId(id);
     }
 
     const handlePasswordIsVisiable = () => {
         setPasswordIsVisiable(!passwordIsVisiable);
     }
 
+    useEffect(() => {
+        return () => {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+        };
+    }, [timeoutId]);
+
+    const Go_To_Register = () => {
+        window.location.href = "/register";
+    }
+
     return (
         <>
-            <div className="relative flex justify-center items-center lg:min-h-screen w-full h-full px-4">
-                <img
-                    src={Regbg}
-                    alt="bg"
-                    className="absolute -z-20 w-full lg:min-h-screen h-full"
-                />
+            <div className="relative flex justify-center items-center lg:min-h-screen w-full h-full px-4 fixed">
+                <img src={Regbg} alt="bg" className="absolute -z-20 w-full lg:min-h-screen h-full" />
                 <div className="flex justify-center lg:gap-10 gap-5 lg:flex-nowrap flex-wrap w-full lg:pt-20 pt-20 items-center">
                     <div className="md:max-w-[470px] w-full">
                         <div className="w-full">
@@ -108,11 +130,12 @@ const Login: React.FC = () => {
                             サインイン
                         </p>
                         <img src={AIimage} alt="Image" className="my-5" />
-                        <p className="text-white text-3xl font-medium leading-10 text-right bb">
+                        <p className="text-white text-3xl font-medium leading-10 text-right bb cursor-pointer" onClick={() => Go_To_Register()}>
                             アカウントをお持ちではありませんか？ <br />
                         </p>
                     </div>
                 </div>
+                {alert && <Alert type={alert.type} message={alert.message} onClose={handleClose} />}
             </div>
         </>
     )

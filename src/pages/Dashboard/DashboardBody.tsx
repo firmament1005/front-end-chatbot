@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import DeleteModal from '../../components/Modal/DeleteModal';
+import BotChooseModal from '../../components/Modal/BotChooseModal';
 
 const MainContent: React.FC = () => {
 
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isDelete, setIsDelete] = useState(false);
+    const [isOpenBotChooseModal, setIsOpenBotChooseModal] = useState(false);
 
     return (
         <>
@@ -14,7 +16,8 @@ const MainContent: React.FC = () => {
                     <div className="flex flex-col mt-8">
                         <div className="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                             <div className="flex justify-end mr-3">
-                                <button className="text-[#0099FF] bg-transparent border border-solid border-[#0099FF] hover:bg-[#0099FF] hover:text-white active:bg-[#0099FF] font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                                <button className="text-[#0099FF] bg-transparent border border-solid border-[#0099FF] hover:bg-[#0099FF] hover:text-white active:bg-[#0099FF] font-bold uppercase text-xs px-4 py-2 rounded 
+                                outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onClick={() => setIsOpenBotChooseModal(true)}>
                                     新しいボットの創造
                                 </button>
                             </div>
@@ -109,19 +112,19 @@ const MainContent: React.FC = () => {
                                                                 <div className="flex items-center gap-x-2">
                                                                     <img
                                                                         className="object-cover w-8 h-8 rounded-full"
-                                                                        src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                                                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
                                                                         alt=""
                                                                     />
                                                                     <div>
-                                                                        <h2 className="text-sm font-medium text-gray-900 dark:text-gray-900">Arthur Melo</h2>
-                                                                        <p className="text-xs font-normal text-gray-900 dark:text-gray-900">authurmelo@example.com</p>
+                                                                        <h2 className="text-sm font-medium text-gray-900 dark:text-gray-900">Jhon</h2>
+                                                                        <p className="text-xs font-normal text-gray-900 dark:text-gray-900">senior@example.com</p>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td className="px-4 py-4 text-sm text-gray-900 dark:text-gray-900 whitespace-nowrap">ボットネーム</td>
                                                             <td className="px-4 py-4 text-sm text-gray-900 dark:text-gray-900 whitespace-nowrap">建設費 資材見積</td>
                                                             <td className="px-4 py-4 text-sm text-gray-900 dark:text-gray-900 whitespace-nowrap">Jan 6, 2022</td>
-                                                            <td className="px-4 py-4 text-sm whitespace-nowrap"  onClick={() => setIsDeleteModalOpen(true)}>
+                                                            <td className="px-4 py-4 text-sm whitespace-nowrap" onClick={() => setIsDeleteModalOpen(true)}>
                                                                 <svg className="w-6 h-6 text-gray-800 dark:text-gray-900 transition duration-300 ease-in-out hover:translate-y-[-2px] cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
                                                                 </svg>
@@ -216,7 +219,7 @@ const MainContent: React.FC = () => {
                                                             </td>
                                                             <td className="px-4 py-4 text-sm text-gray-900 dark:text-gray-900 whitespace-nowrap">Jan 6, 2022</td>
                                                             <td className="px-4 py-4 text-sm text-gray-900 dark:text-gray-900 whitespace-nowrap">建設費 資材見積</td>
-                                                            <td className="px-4 py-4 text-sm whitespace-nowrap"  onClick={() => setIsDeleteModalOpen(true)}>
+                                                            <td className="px-4 py-4 text-sm whitespace-nowrap" onClick={() => setIsDeleteModalOpen(true)}>
                                                                 <svg className="w-6 h-6 text-gray-800 dark:text-gray-900 transition duration-300 ease-in-out hover:translate-y-[-2px] cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
                                                                 </svg>
@@ -244,7 +247,7 @@ const MainContent: React.FC = () => {
                                                             </td>
                                                             <td className="px-4 py-4 text-sm text-gray-900 dark:text-gray-900 whitespace-nowrap">Jan 6, 2022</td>
                                                             <td className="px-4 py-4 text-sm text-gray-900 dark:text-gray-900 whitespace-nowrap">建設費 資材見積</td>
-                                                            <td className="px-4 py-4 text-sm whitespace-nowrap"  onClick={() => setIsDeleteModalOpen(true)}>
+                                                            <td className="px-4 py-4 text-sm whitespace-nowrap" onClick={() => setIsDeleteModalOpen(true)}>
                                                                 <svg className="w-6 h-6 text-gray-800 dark:text-gray-900 transition duration-300 ease-in-out hover:translate-y-[-2px] cursor-pointer" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
                                                                 </svg>
@@ -262,6 +265,9 @@ const MainContent: React.FC = () => {
                 </div>
             </main>
             <DeleteModal showModal={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)} onDelete={() => setIsDelete(false)} />
+            <BotChooseModal isBotModalOpen={isOpenBotChooseModal} onClose={() => setIsOpenBotChooseModal(false)}>
+                <div></div>
+            </BotChooseModal>
         </>
     );
 };

@@ -11,7 +11,7 @@ const Register: React.FC = () => {
     const [isConfirmVisiable, setIsConfirmVisiable] = useState(false);
 
     const handleSignUp = () => {
-        console.log(userName, userEmail, password);
+        window.location.href = "/";
     }
 
     return (
@@ -30,7 +30,7 @@ const Register: React.FC = () => {
                             </p>
                             <input
                                 type="text"
-                                placeholder="senior.engineer@gmail.com"
+                                placeholder="Jhon"
                                 className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
                                 value={userName}
                                 onChange={(e) => setUserName(e.target.value)}

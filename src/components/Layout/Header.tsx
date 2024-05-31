@@ -11,6 +11,10 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [openUserModal, setOpenUserModal] = useState(false);
 
+    const Logout = () => {
+        window.location.href = "/";
+    }
+
     return (
         <header className="flex items-center justify-between px-6 py-4 bg-white border-b-2 shadow-xl">
             <div className="flex items-center">
@@ -51,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
                     >
                         <img
                             className="object-cover w-full h-full"
-                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
                             alt="Your avatar"
                         />
                     </button>
@@ -71,10 +75,10 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
 
                             <div className="absolute right-0 w-32 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white" onClick={() => setOpenUserModal(true)}>
-                                    Profile
+                                    プロフィール
                                 </a>
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white">
-                                    Logout
+                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white" onClick={() => Logout()}>
+                                    ログアウト
                                 </a>
                             </div>
                         </>
