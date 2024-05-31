@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Layout/Header";
 import DashboardBody from "./DashboardBody";
 import DashboardSideBar from "../../components/Layout/Dashboard/DashboardSidebar";
+import { useUserContext } from "../../Context/AuthContext/AuthContext";
 
 const Dashboard: React.FC = () => {
     const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+    const { User } = useUserContext();
+
+    useEffect(() => {
+        console.log(User);
+    }, [User])
 
     return (
         <div className="flex h-screen bg-gray-200">

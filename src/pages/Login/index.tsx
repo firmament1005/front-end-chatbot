@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Regbg from "../../assets/images/signupnewbg.png";
 import AIimage from "../../assets/images/ailogin.png";
 import Alert from '../../components/Alert/Alert';
+import { useUserContext } from '../../Context/AuthContext/AuthContext';
 
 const Login: React.FC = () => {
     const [userName, setUserName] = useState('');
@@ -9,6 +10,8 @@ const Login: React.FC = () => {
     const [passwordIsVisiable, setPasswordIsVisiable] = useState(true);
     const [alert, setAlert] = useState<{ type: 'success' | 'error' | 'warning' | 'info'; message: string } | null>(null);
     const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+
+    const { User, addUserData } = useUserContext();
 
     const showAlert = (type: 'success' | 'error' | 'warning' | 'info', message: string) => {
         setAlert({ type, message });
@@ -19,11 +22,39 @@ const Login: React.FC = () => {
     };
 
     const handleLogin = () => {
-        showAlert('success', "Login Success");
-        const id = setTimeout(() => {
-            setAlert(null);
-        }, 3000);
-        setTimeoutId(id);
+        let index = false;
+        if (userName === "") {
+            showAlert("error", "ユーザー名を入力してください!");
+        } else if (password === "") {
+            showAlert("error", "ユーザーパスワードを入力してください!");
+        } else if (password.length < 6) {
+            showAlert("error", "パスワードの長さは少なくとも6文字以上でなければなりません!");
+        }
+        else {
+            showAlert('success', "ログイン成功！");
+            const userData = {
+                id: 1,
+                UserName: userName,
+                Password: password,
+                Avatar: "/img/avatar.png"
+            }
+            console.log(userData);
+            addUserData(userData);
+            index = true;
+        }
+        if (index === false) {
+            const id = setTimeout(() => {
+                window.location.href = "/dashboard";
+                setAlert(null);
+            }, 3000);
+            setTimeoutId(id);
+        } else {
+            const id = setTimeout(() => {
+                window.location.href = "/dashboard";
+                setAlert(null);
+            }, 1000);
+            setTimeoutId(id);
+        }
     }
 
     const handlePasswordIsVisiable = () => {

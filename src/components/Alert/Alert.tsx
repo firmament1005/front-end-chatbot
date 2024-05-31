@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface AlertProps {
     type: 'success' | 'error' | 'warning' | 'info';
@@ -28,7 +28,7 @@ const Alert: React.FC<AlertProps> = ({ type, message, onClose }) => {
     }
 
     return (
-        <div className={`${baseStyle} ${alertStyle} fixed absolute top-0`} role="alert">
+        <div className={`${baseStyle} ${alertStyle} fixed absolute top-0 animate-slide-alert-in`} role="alert">
             <span>{message}</span>
             <button onClick={onClose} className="ml-4 text-lg font-bold">×</button>
         </div>
