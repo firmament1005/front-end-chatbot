@@ -15,9 +15,19 @@ const Register: React.FC = () => {
         window.location.href = "/";
     }
 
-    const loadFile = (event : Event) => {
-        var input = event.target;
-    }
+    const [imageSrc, setImageSrc] = useState<string>('/img/avatar.png');
+
+    const loadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const input = event.target;
+        if (input.files && input.files[0]) {
+            const file = input.files[0];
+            const output = URL.createObjectURL(file);
+            setImageSrc(output);
+            return () => {
+                URL.revokeObjectURL(output);
+            };
+        }
+    };
 
     return (
         <>
@@ -26,10 +36,12 @@ const Register: React.FC = () => {
                 <div className="flex justify-center lg:gap-10 gap-5 lg:flex-nowrap flex-wrap w-full lg:pt-20 pt-20">
                     <div className="md:max-w-[470px] w-full">
                         <div className="flex w-full items-center justify-center bg-grey-lighter">
-                            <label className="w-32 h-32 flex items-center rounded-full shadow-lg border cursor-pointer">
-                                <img ref={upload} src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" className="w-full y-full rounded-full" alt="" />
-                                <input type='file' className="hidden" />
-                            </label>
+                            <label className="w-40 h-40 flex items-center rounded-full shadow-lg cursor-pointer">
+                                <div className='w-full h-full rounded-full flex justify-center items-center'>
+                                    <img ref={upload} src={imageSrc} className="w-full h-full rounded-full" alt="" />
+                                </div>
+                                <input type='file' onChange={(event) => loadFile(event)} className="hidden" />
+                          </label>
                         </div>
                         <div className="w-full">
                             <p className="text-white bb text-2xl font-medium leading-[80px]">
