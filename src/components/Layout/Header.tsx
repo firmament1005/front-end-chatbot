@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import UserModal from '../Modal/UserModal';
-import DashboardSidebar from './Dashboard/DashboardSidebar';
 
 interface HeaderProps {
     sidebarOpen: boolean;

@@ -25,7 +25,6 @@ const Footer: React.FC<FooterProps> = ({ sendQuestions }) => {
         if (textareaRef.current) {
             const textarea = textareaRef.current;
             if (questionFiles.length > 0) {
-                console.log(questionFiles[0].name);
                 sendQuestions(textarea.value, questionFiles);
             }
             else {

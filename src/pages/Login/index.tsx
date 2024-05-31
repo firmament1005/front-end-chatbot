@@ -8,9 +8,8 @@ const Login: React.FC = () => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [passwordIsVisiable, setPasswordIsVisiable] = useState(true);
-    const [alert, setAlert] = useState<{ type: 'success' | 'error' | 'warning' | 'info'; message: string } | null>(null);
+    const [alertMsg, setAlert] = useState<{ type: 'success' | 'error' | 'warning' | 'info'; message: string } | null>(null);
     const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
-
     const { User, addUserData } = useUserContext();
 
     const showAlert = (type: 'success' | 'error' | 'warning' | 'info', message: string) => {
@@ -185,7 +184,7 @@ const Login: React.FC = () => {
                         </p>
                     </div>
                 </div>
-                {alert && <Alert type={alert.type} message={alert.message} onClose={handleClose} />}
+                {alertMsg && <Alert type={alertMsg.type} message={alertMsg.message} onClose={handleClose} />}
             </div>
         </>
     )

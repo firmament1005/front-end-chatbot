@@ -10,7 +10,6 @@ const Message: React.FC = () => {
 
     const handleSendQuestion = async (text = '', files: File[]) => {
         if (files.length > 0) {
-            console.log(files[0].name);
         }
         try {
             const config = {
