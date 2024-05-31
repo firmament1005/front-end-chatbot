@@ -9,7 +9,7 @@ const Login: React.FC = () => {
     const [passwordIsVisiable, setPasswordIsVisiable] = useState(false);
 
     const handleLogin = () => {
-        console.log(userName, password);
+        window.location.href = "dashboard";
     }
 
     const handlePasswordIsVisiable = () => {

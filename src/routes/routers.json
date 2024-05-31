@@ -1,6 +1,6 @@
 [
     {
-        "path": "/login",
+        "path": "/",
         "component": "Login",
         "exact": true,
         "auth": false
@@ -12,7 +12,7 @@
         "auth": false
     },
     {
-        "path": "/",
+        "path": "/dashboard",
         "component": "Dashboard",
         "exact": true,
         "auth": false

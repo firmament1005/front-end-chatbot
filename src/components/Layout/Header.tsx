@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
                         />
                     </svg>
                 </button>
-                <div className="relative mx-4 lg:mx-0">
+                <div className="relative mx-4 lg:mx-0 z-0">
                     <div className="relative border flex items-center w-full h-10 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
                         <div className="grid place-items-center h-full w-12 text-gray-300">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -66,10 +66,10 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
                         <>
                             <div
                                 onClick={() => setDropdownOpen(false)}
-                                className="fixed inset-0 z-10 w-full h-full"
+                                className="fixed inset-0 w-full h-full"
                             ></div>
 
-                            <div className="absolute right-0 z-10 w-32 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
+                            <div className="absolute right-0 w-32 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#0099FF] hover:text-white" onClick={() => setOpenUserModal(true)}>
                                     Profile
                                 </a>
