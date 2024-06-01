@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useReducer } from 'react';
 import BotChooseModal from '../../Modal/BotChooseModal';
 import { useChatBotListContext } from '../../../Context/ChatListContext/ChatListContext';
 
@@ -12,9 +12,9 @@ const ChatSideBar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarOpen }
     const [dropdownOpen, setDropdownOpen] = useState<number | null>(null);
     const [chatBotNameInput, setChatBotNameInput] = useState<number | null>(null);
     const [isChatSideBarOpen, setIsChatSideBarOpen] = useState("ChatSideBar");
-    const { Bot } = useChatBotListContext();
-    const chatBotName = useRef<HTMLDivElement>(null);
-    const dropDown = useRef<HTMLDivElement>(null);
+    const { Bot, updateChatBot, deleteChatBot } = useChatBotListContext();
+    const [newBotName, setNewBotName] = useState<string>("");
+    const NewChatBotName = useRef<HTMLInputElement>(null);
 
     //Hidden ChatSideBar
     const HiddenChatSideBar = () => {
@@ -30,17 +30,37 @@ const ChatSideBar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarOpen }
     //Change ChatBot Name
     const reName = (index: number) => {
         setChatBotNameInput(chatBotNameInput === index ? null : index);
-        if (chatBotName.current && dropDown.current) {
-            chatBotName.current.style.display = "none";
-            dropDown.current.style.display = "none";
-        }
+
+        const ChatBotNameElement = document.getElementById("chatbotname" + index);
+        const DropdownElement = document.getElementById("dropdown" + index);
+        if (ChatBotNameElement) ChatBotNameElement.style.display = "none";
+        if (DropdownElement) DropdownElement.style.display = "none";
     }
 
+    const handleChangeBotName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setNewBotName(event.target.value);
+    };
+
     //Enter Key Event
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>, index : number, id: number) => {
         if (event.key === 'Enter') {
+            setChatBotNameInput(null);
+            updateChatBot(id, newBotName);
+            Bot[index].ChatBotName = newBotName;
+
+            const ChatBotNameElement = document.getElementById("chatbotname" + id);
+            const DropdownElement = document.getElementById("dropdown" + id);
+            if (ChatBotNameElement) ChatBotNameElement.style.display = "flex";
+            if (DropdownElement) DropdownElement.style.display = "block";
+
+            setDropdownOpen(null);
         }
     };
+
+    //Delete ChatBot
+    const handleDeleteBot = (index : number) => {
+        deleteChatBot(index);
+    }
 
     //ChatBot List Sort
     const sortedChatBotList = Bot.sort((a, b) => b.id - a.id);
@@ -86,29 +106,29 @@ const ChatSideBar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarOpen }
                     <div className="mt-5">
                         {
                             sortedChatBotList.map((item, index) => (
-                                <li tabIndex={0} key={item.id} className="mt-1 rounded flex w-full justify-between text-black-300 cursor-pointer items-center px-2.5 py-2.5 mb-1 leading-tight bg-white hover:bg-[#0099FF] transition-all hover:bg-[#0099FF] focus:bg-[#0099FF] active:bg-[#0099FF]-50 hover:text-white focus:text-white active:text-white outline-none">
-                                    <div ref={chatBotName} className="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
+                                <li tabIndex={0} key={index} className="mt-1 rounded flex w-full justify-between text-black-300 cursor-pointer items-center px-2.5 py-2.5 mb-1 leading-tight bg-white hover:bg-[#0099FF] transition-all hover:bg-[#0099FF] focus:bg-[#0099FF] active:bg-[#0099FF]-50 hover:text-white focus:text-white active:text-white outline-none">
+                                    <div id={"chatbotname" + item.id} className="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                         <span className="text-sm ml-2">{item.ChatBotName}</span>
                                     </div>
-                                    <div className="relative" ref={dropDown}>
-                                        <svg onClick={() => toggleDropdown(index)} className="w-4 h-4 text-gray-500 hover:text-white focus:text-white active:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
+                                    <div className="relative" id={"dropdown" + item.id}>
+                                        <svg onClick={() => toggleDropdown(item.id)} className="w-4 h-4 text-gray-500 hover:text-white focus:text-white active:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
                                             <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"></path>
                                         </svg>
-                                        {dropdownOpen === index && <div onClick={() => toggleDropdown(index)} className="fixed inset-0 h-full w-full z-10"></div>}
-                                        {dropdownOpen === index && (
+                                        {dropdownOpen === item.id && <div onClick={() => toggleDropdown(item.id)} className="fixed inset-0 h-full w-full z-10"></div>}
+                                        {dropdownOpen === item.id && (
                                             <div className="absolute right-0 mt-2 py-2 w-36 bg-white rounded-md shadow-xl z-20">
-                                                <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-300 hover:text-black" onClick={() => reName(index)}>
+                                                <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-300 hover:text-black" onClick={() => reName(item.id)}>
                                                     Rename
                                                 </a>
-                                                <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-300 hover:text-black">
+                                                <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-300 hover:text-black" onClick={() => handleDeleteBot(item.id)}>
                                                     Delete
                                                 </a>
                                             </div>
                                         )}
                                     </div>
                                     {
-                                        chatBotNameInput === index && (
-                                            <input id="name" onKeyDown={handleKeyDown} className="text-gray-600 focus:outline-none font-normal w-full h-9 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                                        chatBotNameInput === item.id && (
+                                            <input ref={NewChatBotName} onKeyDown={(e) => handleKeyDown(e, index, item.id)} defaultValue={item.ChatBotName} onChange={handleChangeBotName} className="text-gray-600 focus:outline-none font-normal w-full h-9 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                                 placeholder="James" />
                                         )
                                     }

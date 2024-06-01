@@ -6,6 +6,7 @@ interface FileUploadProps {
 }
 
 const FileUpload: React.FC<FileUploadProps> = ({ imageURL, setImageURL }) => {
+
     const loadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
         const input = event.target;
         if (input.files && input.files[0]) {

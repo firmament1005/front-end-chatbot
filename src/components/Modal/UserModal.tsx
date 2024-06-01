@@ -35,7 +35,6 @@ const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
     const handleNewPasswordVisibled = () => {
         setIsNewPasswordVisibled(!isNewPasswordVisibled);
-        console.log(Userdata);
     }
 
     const handleonfrimPasswordVisibled = () => {
@@ -58,12 +57,6 @@ const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                     <div role="alert" className={`container mx-auto w-11/12 md:w-2/3 max-w-lg z-50 ${isOpen ? 'animate-slide-in' : 'animate-slide-out'}`}>
                         <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                             <FileUpload imageURL={ImageURL} setImageURL={setimageURL}/>
-                            {/* <div className="flex items-center justify-center bg-grey-lighter">
-                                <label className="w-auto flex items-center rounded-full shadow-lg border cursor-pointer">
-                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" className="w-24 h-24 rounded-full" alt="" />
-                                    <input type='file' className="hidden" />
-                                </label>
-                            </div> */}
                             <label htmlFor="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">ユーザー名</label>
                             <input id="name" defaultValue={Userdata?.Username} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                 placeholder="James" />

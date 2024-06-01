@@ -17,7 +17,6 @@ const Register: React.FC = () => {
 
     //New Register
     const handleSignUp = () => {
-        console.log(ImageURL);
         let flag = false;
         if (userName === "") {
             showAlert('error', '名前を入力してください!');

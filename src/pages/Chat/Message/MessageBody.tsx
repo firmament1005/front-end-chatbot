@@ -7,18 +7,18 @@ interface MessageProps {
 const MessageBody: React.FC<MessageProps> = ({ messages }) => {
     return (
         <>
-            <div className="w-full h-full overflow-y-auto p-8">
-                {messages.map((message, index) => (
-                    <div key={index}>
-                        <Question message={message.question} />
-                        <Answer message={message.answer} />
-                    </div>
-                ))}
-            </div>
-            <main className="flex-1 overflow-x-hidden overflow-y-auto bg-white">
+            <main className="flex overflow-x-hidden overflow-y-auto bg-white">
                 <div className="flex flex-col">
                     <div className="w-full h-[84vh] overflow-y-auto p-8">
-                        <div className="w-auto flex justify-start gap-2.5 mt-2">
+                        <div className="w-full h-full overflow-y-auto p-8">
+                            {messages.map((message, index) => (
+                                <div key={index}>
+                                    <Question message={message.question} />
+                                    <Answer message={message.answer} />
+                                </div>
+                            ))}
+                        </div>
+                        {/* <div className="w-auto flex justify-start gap-2.5 mt-2">
                             <div className="flex w-auto">
                                 <img className="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Image"></img>
                                 <div className="flex flex-col gap-1 w-full max-w-[640px]">
@@ -45,7 +45,7 @@ const MessageBody: React.FC<MessageProps> = ({ messages }) => {
                                 </div>
                                 <img className="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Jese image" />
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </main>

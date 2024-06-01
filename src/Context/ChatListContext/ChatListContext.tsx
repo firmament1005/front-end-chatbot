@@ -10,6 +10,8 @@ interface ChatBotList {
 interface ChatBotListContextType {
     Bot: ChatBotList[];
     addChatBot: (ChatBotData: ChatBotList) => void;
+    updateChatBot: (id: number, name: string) => void;
+    deleteChatBot: (id: number) => void;
 }
 
 const ChatBotListContext = createContext<ChatBotListContextType | undefined>(undefined);
@@ -33,8 +35,18 @@ export const ChatBotListProvider: React.FC<ChatBotListProviderProps> = ({ childr
         setChatBot((prevBots) => [...prevBots, ChatBotData]);
     };
 
+    const updateChatBot = (id: number, ChatBotName: string) => {
+        setChatBot(prevItems =>
+            prevItems.map(item => (item.id === id ? { ...item, ChatBotName } : item))
+        );
+    };
+
+    const deleteChatBot = (id: number) => {
+        setChatBot(prevItems => prevItems.filter(item => item.id !== id));
+    };
+
     return (
-        <ChatBotListContext.Provider value={{ Bot, addChatBot }}>
+        <ChatBotListContext.Provider value={{ Bot, addChatBot, updateChatBot, deleteChatBot }}>
             {children}
         </ChatBotListContext.Provider>
     );
