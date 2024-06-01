@@ -66,10 +66,6 @@ const Login: React.FC = () => {
         };
     }, [timeoutId]);
 
-    window.onclick = (event : Event) => {
-        console.log(event);
-    }
-
     const Go_To_Register = () => {
         window.location.href = "/register";
     }

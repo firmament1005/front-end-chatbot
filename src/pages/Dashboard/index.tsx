@@ -8,10 +8,6 @@ const Dashboard: React.FC = () => {
     const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
     const { User } = useUserContext();
 
-    useEffect(() => {
-        console.log(User);
-    }, [User])
-
     return (
         <div className="flex h-screen bg-gray-200">
             <DashboardSideBar isSideBarOpen={sidebarOpen} setIsSidebarOpen={setSidebarOpen} />

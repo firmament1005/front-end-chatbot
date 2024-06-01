@@ -42,6 +42,7 @@ module.exports = {
         },
         'slide-alert-in': {
           '0%': {
+            transform: 'translateY(-40%)',
             opacity: '0'
           },
           '100%': {
@@ -52,6 +53,7 @@ module.exports = {
         'slide-alert-out': {
           '0%': { transform: 'translateY(0)' },
           '100%': {
+            transform: 'translateY(-40%)',
             opacity: '1'
           },
         },

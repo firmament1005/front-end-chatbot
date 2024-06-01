@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import FileUpload from '../Upload/fileUpload';
 
 type ModalProps = {
     isOpen: boolean;
@@ -6,23 +7,35 @@ type ModalProps = {
     children: React.ReactNode;
 };
 
+type USERDATA = {
+    Username: string,
+    Useremail: string,
+    Password: string,
+    Avatar: string
+}
+
 const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
     const [animate, setAnimate] = useState(false);
-    const [isPasswordVisibled, setIsPasswordVisibled] = useState(false);
     const [isNewPasswordVisibled, setIsNewPasswordVisibled] = useState(false);
     const [isConfrimPasswordVisibled, setIsConfrimPasswordVisibled] = useState(false);
-
     const [isPassword, setIsPassword] = useState("");
     const [isNewPassword, setIsNewPassword] = useState("");
     const [isConfirmPassword, setIsConfirmPassword] = useState("");
+    const [Userdata, setUserData] = useState<USERDATA>();
+    const [ImageURL, setimageURL] = useState<string>("");
 
-    const handlePasswordVisiable = () => {
-        setIsPasswordVisibled(!isPasswordVisibled);
-    }
+    useEffect(() => {
+        const userData = localStorage.getItem("UserData");
+        if (userData != null) {
+            const temp = JSON.parse(userData);
+            setUserData(temp);
+        }
+    }, [])
 
     const handleNewPasswordVisibled = () => {
         setIsNewPasswordVisibled(!isNewPasswordVisibled);
+        console.log(Userdata);
     }
 
     const handleonfrimPasswordVisibled = () => {
@@ -44,19 +57,20 @@ const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 <div className="py-12 bg-white-700 transition duration-300 ease-in-out absolute top-0 right-0 bottom-0 left-0 bg-opacity-20 bg-black h-full z-50">
                     <div role="alert" className={`container mx-auto w-11/12 md:w-2/3 max-w-lg z-50 ${isOpen ? 'animate-slide-in' : 'animate-slide-out'}`}>
                         <div className="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
-                            <div className="flex items-center justify-center bg-grey-lighter">
+                            <FileUpload imageURL={ImageURL} setImageURL={setimageURL}/>
+                            {/* <div className="flex items-center justify-center bg-grey-lighter">
                                 <label className="w-auto flex items-center rounded-full shadow-lg border cursor-pointer">
                                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" className="w-24 h-24 rounded-full" alt="" />
                                     <input type='file' className="hidden" />
                                 </label>
-                            </div>
+                            </div> */}
                             <label htmlFor="name" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">ユーザー名</label>
-                            <input id="name" value="Jhon" className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                            <input id="name" defaultValue={Userdata?.Username} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                 placeholder="James" />
                             <label htmlFor="email2" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">Eメール</label>
                             <div className="w-full relative">
                                 <input
-                                    value="senior@example.com"
+                                    defaultValue={Userdata?.Useremail}
                                     type='text'
                                     className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                     onChange={(e) => setIsPassword(e.target.value)}
@@ -64,9 +78,7 @@ const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                             </div>
                             <label htmlFor="email2" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">新しいパスワード</label>
                             <div className="w-full relative">
-                                <input
-                                    type={isNewPasswordVisibled ? "text" : "password"}
-                                    value={isNewPassword}
+                                <input type={isNewPasswordVisibled ? "text" : "password"} defaultValue={isNewPassword}
                                     className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                     onChange={(e) => setIsNewPassword(e.target.value)}
                                 />
@@ -104,10 +116,7 @@ const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                             </div>
                             <label htmlFor="email2" className="text-gray-800 text-sm font-bold leading-tight tracking-normal">パスワード確認</label>
                             <div className="w-full relative">
-                                <input
-                                    type={isConfrimPasswordVisibled ? "text" : "password"}
-                                    value={isConfirmPassword}
-                                    className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                                <input type={isConfrimPasswordVisibled ? "text" : "password"} defaultValue={isConfirmPassword} className="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                     onChange={(e) => setIsConfirmPassword(e.target.value)}
                                 />
                                 <svg
@@ -153,17 +162,7 @@ const UserModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                 </button>
                             </div>
                             <button className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
-                                aria-label="close modal" role="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="20"
-                                    height="20" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" fill="none"
-                                    strokeLinecap="round" strokeLinejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <line x1="18" y1="6" x2="6" y2="18" />
-                                    <line x1="6" y1="6" x2="18" y2="18" />
-                                </svg>
-                            </button>
-                            <button className="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
-                                aria-label="close modal" role="button">
+                                aria-label="close modal" role="button" onClick={onClose}>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-x" width="20"
                                     height="20" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" fill="none"
                                     strokeLinecap="round" strokeLinejoin="round">

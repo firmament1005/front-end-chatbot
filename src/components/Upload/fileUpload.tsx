@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface FileUploadProps {
     imageURL: string;
@@ -11,6 +11,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ imageURL, setImageURL }) => {
         if (input.files && input.files[0]) {
             const file = input.files[0];
             const output = URL.createObjectURL(file);
+            console.log(output);
             setImageURL(output);
             return () => {
                 URL.revokeObjectURL(output);

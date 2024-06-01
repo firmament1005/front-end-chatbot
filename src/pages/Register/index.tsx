@@ -31,9 +31,10 @@ const Register: React.FC = () => {
         } else {
             showAlert('success', '登録が成功しました。');
             const userData = {
-                Username : userName,
-                Password : password,
-                Avatar : ImageURL
+                Username: userName,
+                Useremail: userEmail,
+                Password: password,
+                Avatar: ImageURL ? ImageURL : "/img/avatar.png"
             }
             localStorage.setItem('UserData', JSON.stringify(userData));
             flag = true;
