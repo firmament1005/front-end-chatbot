@@ -40,12 +40,31 @@ module.exports = {
             opacity: '1'
           },
         },
+        'slide-alert-in': {
+          '0%': {
+            transform: 'translateY(-20%)',
+            opacity: '0'
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            opacity: 1
+          },
+        },
+        'slide-alert-out': {
+          '0%': { transform: 'translateY(0)' },
+          '100%': {
+            transform: 'translateY(-10%)',
+            opacity: '1'
+          },
+        },
       },
       animation: {
         'slide-in': 'slide-in .8s ease-out',
         'slide-out': 'slide-out .8s ease-out',
         "slide-dropdown-in": "slide-dropdown-in .5s ease-out",
-        "slide-dropdown-out": "slide-dropdown-out .5s ease-out"
+        "slide-dropdown-out": "slide-dropdown-out .5s ease-out",
+        "slide-alert-in": "slide-alert-in .2s ease-out",
+        "slide-alert-out": "slide-alert-out .2s ease-out"
       },
     },
   },

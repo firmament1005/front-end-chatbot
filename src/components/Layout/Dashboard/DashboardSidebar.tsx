@@ -35,6 +35,10 @@ const DashboardSidebar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarO
         }
     }
 
+    const Go_To_ChatPage = () => {
+        window.location.href = "/chat"
+    }
+
     return (
         <div className={`fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0 ${(isSideBarOpen && isSidebarClose) ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'}`}>
             <div className="flex items-center justify-center mt-8 relative">
@@ -78,7 +82,7 @@ const DashboardSidebar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarO
                             )
                         }
                     </li>
-                    <li className="opcion-con-desplegable w-[90%]">
+                    <li className="opcion-con-desplegable w-[90%] cursor-pointer" onClick={() => Go_To_ChatPage()}>
                         <div className="flex items-center justify-between p-2 hover:bg-gray-700">
                             <div className="flex items-center">
                                 <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">

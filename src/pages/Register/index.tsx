@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Regbg from "../../assets/images/signupnewbg.png";
 import AIimage from "../../assets/images/ailogin.png";
 
@@ -9,29 +9,45 @@ const Register: React.FC = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isPasswordVisiable, setIsPasswordVisiable] = useState(false);
     const [isConfirmVisiable, setIsConfirmVisiable] = useState(false);
+    const upload = useRef(null);
 
     const handleSignUp = () => {
-        console.log(userName, userEmail, password);
+        window.location.href = "/";
     }
+
+    const [imageSrc, setImageSrc] = useState<string>('/img/avatar.png');
+
+    const loadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const input = event.target;
+        if (input.files && input.files[0]) {
+            const file = input.files[0];
+            const output = URL.createObjectURL(file);
+            setImageSrc(output);
+            return () => {
+                URL.revokeObjectURL(output);
+            };
+        }
+    };
 
     return (
         <>
             <div className="relative flex justify-center items-center lg:min-h-screen w-full h-full px-4">
-                <img
-                    src={Regbg}
-                    alt="bg"
-                    className="absolute -z-20 w-full lg:min-h-screen h-full"
-                />
+                <img src={Regbg} alt="bg" className="absolute -z-20 w-full lg:min-h-screen h-full" />
                 <div className="flex justify-center lg:gap-10 gap-5 lg:flex-nowrap flex-wrap w-full lg:pt-20 pt-20">
                     <div className="md:max-w-[470px] w-full">
+                        <div className="flex w-full items-center justify-center bg-grey-lighter">
+                            <label className="w-40 h-40 flex items-center rounded-full shadow-lg cursor-pointer">
+                                <div className='w-full h-full rounded-full flex justify-center items-center'>
+                                    <img ref={upload} src={imageSrc} className="w-full h-full rounded-full" alt="" />
+                                </div>
+                                <input type='file' onChange={(event) => loadFile(event)} className="hidden" />
+                            </label>
+                        </div>
                         <div className="w-full">
                             <p className="text-white bb text-2xl font-medium leading-[80px]">
                                 ユーザー名
                             </p>
-                            <input
-                                type="text"
-                                placeholder="senior.engineer@gmail.com"
-                                className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
+                            <input type="text" placeholder="Jhon" className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
                                 value={userName}
                                 onChange={(e) => setUserName(e.target.value)}
                             />
@@ -95,9 +111,7 @@ const Register: React.FC = () => {
                             <p className="text-white bb text-2xl font-medium leading-[80px]">
                                 パスワードを認証する
                             </p>
-                            <input
-                                type={isConfirmVisiable ? "text" : "password"}
-                                placeholder="**********"
+                            <input type={isConfirmVisiable ? "text" : "password"} placeholder="**********"
                                 className="outline-none w-full border-b-4 border-[#227685] pb-4 px-4 bg-transparent text-white bb"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -151,6 +165,27 @@ const Register: React.FC = () => {
                             onClick={() => handleSignUp()}
                         >
                             サインアップ
+                        </button>
+                        <button className="w-full mt-3 mx-auto h-[63px] flex justify-center border border-[#227685] bb gap-4 items-center text-white lg:text-[32px] text-2xl font-bold bg-transparent hover:bg-[#227685] ease-in-out transform duration-300 rounded-full">
+                            <div className="bg-white p-2 rounded-full">
+                                <svg className="w-4" viewBox="0 0 533.5 544.3">
+                                    <path
+                                        d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z"
+                                        fill="#4285f4" />
+                                    <path
+                                        d="M272.1 544.3c73.4 0 135.3-24.1 180.4-65.7l-87.7-68c-24.4 16.6-55.9 26-92.6 26-71 0-131.2-47.9-152.8-112.3H28.9v70.1c46.2 91.9 140.3 149.9 243.2 149.9z"
+                                        fill="#34a853" />
+                                    <path
+                                        d="M119.3 324.3c-11.4-33.8-11.4-70.4 0-104.2V150H28.9c-38.6 76.9-38.6 167.5 0 244.4l90.4-70.1z"
+                                        fill="#fbbc04" />
+                                    <path
+                                        d="M272.1 107.7c38.8-.6 76.3 14 104.4 40.8l77.7-77.7C405 24.6 339.7-.8 272.1 0 169.2 0 75.1 58 28.9 150l90.4 70.1c21.5-64.5 81.8-112.4 152.8-112.4z"
+                                        fill="#ea4335" />
+                                </svg>
+                            </div>
+                            <span className="ml-4">
+                                Sign Up with Google
+                            </span>
                         </button>
                     </div>
                     <div className="md:max-w-[730px] w-full loginbg px-8 py-8">

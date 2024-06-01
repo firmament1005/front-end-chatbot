@@ -39,7 +39,6 @@ const ChatSideBar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarOpen }
     //Enter Key Event
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            alert(123)
         }
     };
 
@@ -48,7 +47,7 @@ const ChatSideBar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarOpen }
 
     return (
         <>
-            <div className={`fixed inset-y-0 left-0 w-60 z-50 overflow-y-auto transition duration-300 transform bg-gray-100 lg:translate-x-0 lg:static lg:inset-0 ${(isSideBarOpen && isChatSideBarOpen) ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'}`}>
+            <div className={`fixed inset-y-0 left-0 w-60 z-10 overflow-y-auto transition duration-300 transform bg-gray-100 lg:translate-x-0 lg:static lg:inset-0 ${(isSideBarOpen && isChatSideBarOpen) ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'}`}>
                 <div className="flex items-center justify-center mt-8 relative">
                     <button className="text-gray-900 focus:outline-none lg:hidden absolute bottom-10 right-0" onClick={() => HiddenChatSideBar()}>
                         <svg className="w-6 h-6 text-gray-900 dark:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">

@@ -1,6 +1,8 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import routesConfig from './routers.json';
+import Loading from '../pages/Other/Loading';
+import Error from '../pages/Other/Error';
 
 const lazyLoad = (componentName: string) => {
     return lazy(() => import(`../pages/${componentName}`));
@@ -9,7 +11,7 @@ const lazyLoad = (componentName: string) => {
 const RoutesComponent: React.FC = () => {
     return (
         <Router>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loading />}>
                 <Routes>
                     {routesConfig.map((route, index) => {
                         const Component = lazyLoad(route.component);
@@ -23,7 +25,7 @@ const RoutesComponent: React.FC = () => {
                         );
                     })}
                     <Route path='/' element={<Navigate to="/home/" />} />
-                    <Route path="*" element={<Navigate to="/404" />} />
+                    <Route path="*" element={<Error />} />
                 </Routes>
             </Suspense>
         </Router>
