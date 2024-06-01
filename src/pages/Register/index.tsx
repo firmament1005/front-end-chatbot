@@ -1,6 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Regbg from "../../assets/images/signupnewbg.png";
 import AIimage from "../../assets/images/ailogin.png";
+import FileUpload from '../../components/Upload/fileUpload';
+import Alert from '../../components/Alert/Alert';
 
 const Register: React.FC = () => {
     const [userName, setUserName] = useState('');
@@ -9,40 +11,72 @@ const Register: React.FC = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isPasswordVisiable, setIsPasswordVisiable] = useState(false);
     const [isConfirmVisiable, setIsConfirmVisiable] = useState(false);
-    const upload = useRef(null);
+    const [alert, setAlert] = useState<{ type: 'success' | 'error' | 'warning' | 'info'; message: string } | null>(null);
+    const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
+    const [ImageURL, setimageURL] = useState<string>("");
 
+    //New Register
     const handleSignUp = () => {
-        window.location.href = "/";
+        let flag = false;
+        if (userName === "") {
+            showAlert('error', '名前を入力してください!');
+        } else if (userEmail === "") {
+            showAlert('error', 'メールを入力してください!')
+        } else if (password === "") {
+            showAlert('error', 'パスワードを入力する必要があります!')
+        } else if (password.length < 7) {
+            showAlert('error', 'パスワードの長さは少なくとも8文字以上にしてください!');
+        } else if (password !== confirmPassword) {
+            showAlert('error', 'パスワードをチェックしてください!');
+        } else {
+            showAlert('success', '登録が成功しました。');
+            const userData = {
+                Username : userName,
+                Password : password,
+                Avatar : ImageURL
+            }
+            localStorage.setItem('UserData', JSON.stringify(userData));
+            flag = true;
+        }
+        if (flag === false) {
+            const id = setTimeout(() => {
+                setAlert(null);
+            }, 3000);
+            setTimeoutId(id);
+        } else {
+            const id = setTimeout(() => {
+                window.location.href = "/dashboard";
+                setAlert(null);
+            }, 1000);
+            setTimeoutId(id);
+        }
     }
 
-    const [imageSrc, setImageSrc] = useState<string>('/img/avatar.png');
-
-    const loadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const input = event.target;
-        if (input.files && input.files[0]) {
-            const file = input.files[0];
-            const output = URL.createObjectURL(file);
-            setImageSrc(output);
-            return () => {
-                URL.revokeObjectURL(output);
-            };
-        }
+    //Alert Type
+    const showAlert = (type: 'success' | 'error' | 'warning' | 'info', message: string) => {
+        setAlert({ type, message });
     };
+
+    //Alert Close
+    const handleClose = () => {
+        setAlert(null);
+    };
+
+    useEffect(() => {
+        return () => {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+        };
+    }, [timeoutId]);
 
     return (
         <>
-            <div className="relative flex justify-center items-center lg:min-h-screen w-full h-full px-4">
+            <div className="relative flex justify-center items-center lg:min-h-screen w-full h-full px-4 fixed">
                 <img src={Regbg} alt="bg" className="absolute -z-20 w-full lg:min-h-screen h-full" />
                 <div className="flex justify-center lg:gap-10 gap-5 lg:flex-nowrap flex-wrap w-full lg:pt-20 pt-20">
                     <div className="md:max-w-[470px] w-full">
-                        <div className="flex w-full items-center justify-center bg-grey-lighter">
-                            <label className="w-40 h-40 flex items-center rounded-full shadow-lg cursor-pointer">
-                                <div className='w-full h-full rounded-full flex justify-center items-center'>
-                                    <img ref={upload} src={imageSrc} className="w-full h-full rounded-full" alt="" />
-                                </div>
-                                <input type='file' onChange={(event) => loadFile(event)} className="hidden" />
-                            </label>
-                        </div>
+                        <FileUpload imageURL={ImageURL} setImageURL={setimageURL} />
                         <div className="w-full">
                             <p className="text-white bb text-2xl font-medium leading-[80px]">
                                 ユーザー名
@@ -195,6 +229,7 @@ const Register: React.FC = () => {
                         <img src={AIimage} alt="Image" className="my-5" />
                     </div>
                 </div>
+                {alert && <Alert type={alert.type} message={alert.message} onClose={handleClose} />}
             </div >
         </>
     )

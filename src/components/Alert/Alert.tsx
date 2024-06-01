@@ -27,10 +27,17 @@ const Alert: React.FC<AlertProps> = ({ type, message, onClose }) => {
             alertStyle = 'bg-gray-100 text-gray-700';
     }
 
+    const AlertArray = {
+        messageBox: message,
+        messageType: alertStyle
+    }
+
     return (
-        <div className={`${baseStyle} ${alertStyle} fixed absolute top-0 animate-slide-alert-in`} role="alert">
-            <span>{message}</span>
-            <button onClick={onClose} className="ml-4 text-lg font-bold">×</button>
+        <div className='w-full h-auto alsolute top-0 flex flex-col fixed justify-center items-center'>
+            <div className={`${baseStyle} ${alertStyle} animate-slide-alert-in`} role="alert">
+                <span>{message}</span>
+                <button onClick={onClose} className="ml-4 text-lg font-bold">×</button>
+            </div>
         </div>
     );
 };
