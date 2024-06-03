@@ -31,6 +31,7 @@ const Register: React.FC = () => {
         } else {
             showAlert('success', '登録が成功しました。');
             const userData = {
+                ID : 1,
                 Username: userName,
                 Useremail: userEmail,
                 Password: password,
