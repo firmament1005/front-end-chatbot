@@ -12,9 +12,10 @@ const ChatSideBar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarOpen }
     const [dropdownOpen, setDropdownOpen] = useState<number | null>(null);
     const [chatBotNameInput, setChatBotNameInput] = useState<number | null>(null);
     const [isChatSideBarOpen, setIsChatSideBarOpen] = useState("ChatSideBar");
-    const { Bot, updateChatBot, deleteChatBot } = useChatBotListContext();
+    const { Bot, updateChatBot, deleteChatBot, saveActiveChatBotID } = useChatBotListContext();
     const [newBotName, setNewBotName] = useState<string>("");
     const NewChatBotName = useRef<HTMLInputElement>(null);
+    const [activeIndex, setActiveIndex] = useState<number>(1);
 
     //Hidden ChatSideBar
     const HiddenChatSideBar = () => {
@@ -27,7 +28,6 @@ const ChatSideBar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarOpen }
         setDropdownOpen(dropdownOpen === index ? null : index);
     };
 
-    //Change ChatBot Name
     const reName = (index: number) => {
         setChatBotNameInput(chatBotNameInput === index ? null : index);
 
@@ -41,25 +41,37 @@ const ChatSideBar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarOpen }
         setNewBotName(event.target.value);
     };
 
+    //Change ChatBot Name
+    const ChangeNewChatBotName = (index: number, id: number) => {
+
+        setChatBotNameInput(null);
+        updateChatBot(id, newBotName);
+        Bot[index].ChatBotName = newBotName;
+
+        const ChatBotNameElement = document.getElementById("chatbotname" + id);
+        const DropdownElement = document.getElementById("dropdown" + id);
+        if (ChatBotNameElement) ChatBotNameElement.style.display = "flex";
+        if (DropdownElement) DropdownElement.style.display = "block";
+
+        setDropdownOpen(null);
+    }
+
     //Enter Key Event
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>, index : number, id: number) => {
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>, index: number, id: number) => {
         if (event.key === 'Enter') {
-            setChatBotNameInput(null);
-            updateChatBot(id, newBotName);
-            Bot[index].ChatBotName = newBotName;
-
-            const ChatBotNameElement = document.getElementById("chatbotname" + id);
-            const DropdownElement = document.getElementById("dropdown" + id);
-            if (ChatBotNameElement) ChatBotNameElement.style.display = "flex";
-            if (DropdownElement) DropdownElement.style.display = "block";
-
-            setDropdownOpen(null);
+            ChangeNewChatBotName(index, id);
         }
     };
 
     //Delete ChatBot
-    const handleDeleteBot = (index : number) => {
+    const handleDeleteBot = (index: number) => {
         deleteChatBot(index);
+    }
+
+    //Save Chat Bot ID
+    const handleClick = (id: number, index : number) => {
+        saveActiveChatBotID(id);
+        setActiveIndex(index);
     }
 
     //ChatBot List Sort
@@ -106,7 +118,7 @@ const ChatSideBar: React.FC<SideBarProps> = ({ isSideBarOpen, setIsSidebarOpen }
                     <div className="mt-5">
                         {
                             sortedChatBotList.map((item, index) => (
-                                <li tabIndex={0} key={index} className="mt-1 rounded flex w-full justify-between text-black-300 cursor-pointer items-center px-2.5 py-2.5 mb-1 leading-tight bg-white hover:bg-[#0099FF] transition-all hover:bg-[#0099FF] focus:bg-[#0099FF] active:bg-[#0099FF]-50 hover:text-white focus:text-white active:text-white outline-none">
+                                <li tabIndex={0} key={index} onClick={() => handleClick(item.id, index)} className={`mt-1 rounded flex w-full justify-between text-black-300 cursor-pointer items-center px-2.5 py-2.5 mb-1 leading-tight bg-white hover:bg-[#0099FF] transition-all hover:bg-[#0099FF] hover:text-white outline-none ${activeIndex === index ? 'ActiveButtonStyle' : ''}`}>
                                     <div id={"chatbotname" + item.id} className="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
                                         <span className="text-sm ml-2">{item.ChatBotName}</span>
                                     </div>

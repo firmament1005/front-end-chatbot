@@ -8,6 +8,7 @@ type ModalProps = {
 };
 
 type USERDATA = {
+    ID : number,
     Username: string,
     Useremail: string,
     Password: string,

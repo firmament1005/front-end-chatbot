@@ -9,7 +9,7 @@ interface BotChooseModalProps {
 
 const BotChooseModal: React.FC<BotChooseModalProps> = ({ isBotModalOpen, onClose }) => {
 
-    const { Bot, addChatBot } = useChatBotListContext();
+    const { Bot, addChatBot, saveActiveChatBotID } = useChatBotListContext();
     const [botName, setBotName] = useState<string>("新規チャット");
     const [botCategory, setBotCategory] = useState<string>("建設費資材見積");
 
@@ -29,9 +29,11 @@ const BotChooseModal: React.FC<BotChooseModalProps> = ({ isBotModalOpen, onClose
             id: Bot.length,
             ChatBotName: botName,
             ChatBotCategory: botCategory,
-            ChatHistoryID: 1
+            ChatHistoryID: 1,
+            UserID : 1
         }
         addChatBot(chatBotList);
+        saveActiveChatBotID(Bot.length);
         onClose();
     }
 
